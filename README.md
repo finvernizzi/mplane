@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #mPlane nodeJS reference library
 
 This is the mPlane nodejs library. 
@@ -28,3 +29,9 @@ def _parse_numset(valstr):
     return set(map(int, valstr.split(SET_SEP))) 
     con map applica la funzione int (trasforma stringa in intero) su tutti gli elementi estratti da split in valstr
     Poi restituisce un oggetto set
+=======
+mplane
+======
+
+mPlane nodejs implementation
+>>>>>>> 7317929c9d06df4f83a180623db8f7b772cead00
