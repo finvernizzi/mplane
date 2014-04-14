@@ -1,0 +1,27 @@
+{
+  "name": "mplane",
+  "version": "0.0.1",
+  "description": "mPlane nodeJS implementation",
+  "main": "mplane.js",
+  "directories": {
+    "doc": "docs",
+    "examples": "Examples"
+  },
+  "dependencies": {
+        "lodash": "~2.4.1",
+        "cron": "~1.0.4",
+        "url": "~0.7.9",
+        "md5": "~1.2.5"
+  },
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "repository": "",
+  "keywords": [
+    "mPlane",
+    "measurement"
+  ],
+  "author": "fabrizio.invernizzi@telecomitalia.it",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}
