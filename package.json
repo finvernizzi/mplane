@@ -11,23 +11,15 @@
         "lodash": "~2.4.1",
         "cron": "~1.0.4",
         "url": "~0.7.9",
-<<<<<<< HEAD
         "md5": "~1.0.0"
-=======
-        "md5": "~1.2.5"
->>>>>>> e5d0e8e12eaa8d30e14e73a42e12413853c9ddf6
   },
   "scripts": {
     "test": "node ./test/test.js"
   },
-<<<<<<< HEAD
  "repository" : { 
      "type" : "svn",
      "url" : "svn+ssh://invernizzi@163.162.172.20/svn/mplane/release/0_0_1/test"
   },
-=======
-  "repository": "",
->>>>>>> e5d0e8e12eaa8d30e14e73a42e12413853c9ddf6
   "keywords": [
     "mPlane",
     "measurement"
