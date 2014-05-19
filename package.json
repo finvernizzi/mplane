@@ -1,0 +1,39 @@
+{
+  "name": "mplane",
+  "version": "0.0.4",
+  "description": "mPlane nodeJS implementation",
+  "main": "mplane.js",
+  "directories": {
+    "doc": "docs",
+    "examples": "Examples"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "cron": "~1.0.4",
+    "url": "~0.7.9",
+    "MD5": "~1.0.0"
+  },
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finvernizzi/mplane"
+  },
+  "keywords": [
+    "mPlane",
+    "measurement"
+  ],
+  "author": {
+    "name": "fabrizio.invernizzi@telecomitalia.it"
+  },
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "readme": "[![mPlane](http://www.ict-mplane.eu/sites/default/files//public/mplane_final_256x_0.png)](http://www.ict-mplane.eu/)\n\n#mPlane nodeJS reference library \n[![](https://travis-ci.org/finvernizzi/mplane.svg)](https://travis-ci.org/finvernizzi/mplane)\n\n\nThis is the [mPlane](http://www.ict-mplane.eu/) nodejs library. \nThe architecture and software structure is freely inspired by [mPlane reference implementation](http://fp7mplane.github.io/protocol-ri/) written in python by Brian Trammell <brian@trammell.ch>.\n\n\n#Installation\n\n`npm install mplane`\n\n#Example\nIn order to define a simple mplane measure `capability` for a pinger, we should import the library, define `parameters` (with `constraints`), `results` and instantiate a `Capability` object.\n\n\n```javascript\nvar mplane = require('mplane');\n\n// The IP address of the pinger\nvar __MY_IP__ = \"192.168.0.123\";\n\n// Initialize available primitives from the registry\nmplane.Element.initialize_registry(\"registry.json\");\n\n// Source address and destination parameters initialized from the registry\nvar sourceAddress = new mplane.Element(\"source.ip\");\n//  It will ping only from its own IP\nsourceAddress.addConstraint( __MY_IP__ ); \n\n// Destination\nvar destinationAddress = new mplane.Element(\"destination\");\ndestinationAddress.addConstraint( \"192.168.0.1 ... 192.168.0.122\"); \n\n// We can define a parameter with a Json object\nvar numberOfEchoRequests = new mplane.Element({ name:\"Number of echo requests\" , \n                                                prim: mplane.Primitive.NATURAL, \n                                                desc:\"Defines the number of echo requests the pinger should issue\"\n                                            });\nnumberOfEchoRequests.addConstraint(\"1 ... 10\");\n\n// Ping result - MEAN RTT\nvar meanRTT = new mplane.Element(\"delay.twoway\");\n\n// Ready to prepare the Capability\nvar statement = new mplane.Statement({verb:mplane.Statement.VERB_COLLECT});\n\n// We add all the parameters\nstatement.add_parameter(\"My source address\" , sourceAddress , __MY_IP__);\n\n// Here we should set a valid ip address in accordance with the constraints on the destinationAddress\nstatement.add_parameter(\"The destination address\" , destinationAddress , \"192.168.0.1\");\nstatement.add_parameter(\"The number of echo requests the pinger should send\" , numberOfEchoRequests , 1);\n\n// The pinger will return a single column result\nstatement.add_result_column(\"Mean RTT\", meanRTT);\n\n// THE CAPABILITY we will announce\nvar capability = new mplane.Capability(statement);\n\n```\n\n#Documentation\n\nPlease refer to the API reference [mPlane nodejs API](http://finvernizzi.github.io/mplane/)\n\n",
+  "bugs": {
+    "url": "https://github.com/finvernizzi/mplane/issues"
+  },
+  "homepage": "https://github.com/finvernizzi/mplane",
+  "_id": "mplane@0.0.3",
+  "_from": "mplane@"
+}
