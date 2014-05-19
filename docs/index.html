@@ -28,7 +28,7 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <p>(c) 2013-2014 mPlane Consortium (<a href="http://www.ict-mplane.eu">http://www.ict-mplane.eu</a>)
-          Author: Fabrizio Invernizzi <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x66;&#x61;&#98;&#x72;&#105;&#x7a;&#x69;&#111;&#46;&#x69;&#110;&#x76;&#101;&#114;&#x6e;&#x69;&#x7a;&#x7a;&#x69;&#64;&#x74;&#x65;&#x6c;&#101;&#x63;&#x6f;&#x6d;&#105;&#x74;&#97;&#x6c;&#105;&#x61;&#46;&#105;&#x74;">&#x66;&#x61;&#98;&#x72;&#105;&#x7a;&#x69;&#111;&#46;&#x69;&#110;&#x76;&#101;&#114;&#x6e;&#x69;&#x7a;&#x7a;&#x69;&#64;&#x74;&#x65;&#x6c;&#101;&#x63;&#x6f;&#x6d;&#105;&#x74;&#97;&#x6c;&#105;&#x61;&#46;&#105;&#x74;</a></p>
+          Author: Fabrizio Invernizzi <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x66;&#97;&#98;&#114;&#105;&#122;&#x69;&#x6f;&#x2e;&#105;&#x6e;&#x76;&#x65;&#x72;&#110;&#105;&#122;&#122;&#105;&#64;&#116;&#101;&#x6c;&#101;&#x63;&#x6f;&#109;&#105;&#x74;&#x61;&#108;&#105;&#97;&#x2e;&#x69;&#x74;">&#x66;&#97;&#98;&#114;&#105;&#122;&#x69;&#x6f;&#x2e;&#105;&#x6e;&#x76;&#x65;&#x72;&#110;&#105;&#122;&#122;&#105;&#64;&#116;&#101;&#x6c;&#101;&#x63;&#x6f;&#109;&#105;&#x74;&#x61;&#108;&#105;&#97;&#x2e;&#x69;&#x74;</a></p>
 <p>Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:</p>
 <ol>
@@ -68,7 +68,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
               </div>
               <h1 id="mplane-nodejs-reference-library">mPlane nodeJS reference library</h1>
 <p>This is the mPlane nodejs library. 
-The architecture and software structure is freely inspired by <a href="http://fp7mplane.github.io/protocol-ri/">mPlane reference implementation</a> written in python by Brian Trammell <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#98;&#x72;&#105;&#x61;&#x6e;&#x40;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#101;&#x6c;&#x6c;&#46;&#x63;&#104;">&#98;&#x72;&#105;&#x61;&#x6e;&#x40;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#101;&#x6c;&#x6c;&#46;&#x63;&#104;</a>.</p>
+The architecture and software structure is freely inspired by <a href="http://fp7mplane.github.io/protocol-ri/">mPlane reference implementation</a> written in python by Brian Trammell <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x62;&#114;&#105;&#x61;&#110;&#64;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#x65;&#108;&#108;&#46;&#99;&#104;">&#x62;&#114;&#105;&#x61;&#110;&#64;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#x65;&#108;&#108;&#46;&#99;&#104;</a>.</p>
 
             </div>
             
@@ -152,9 +152,7 @@ The architecture and software structure is freely inspired by <a href="http://fp
 <span class="hljs-keyword">var</span> KIND_EXCEPTION = <span class="hljs-string">"exception"</span>
 
 
-<span class="hljs-keyword">var</span> _dow_label = [<span class="hljs-string">'mo'</span>, <span class="hljs-string">'tu'</span>, <span class="hljs-string">'we'</span>, <span class="hljs-string">'th'</span>, <span class="hljs-string">'fr'</span>, <span class="hljs-string">'sa'</span>, <span class="hljs-string">'su'</span>];
-
-<span class="hljs-keyword">var</span> __DEFAULT_REGISTRY_FILE = <span class="hljs-string">"./registry.json"</span>;</pre></div></div>
+<span class="hljs-keyword">var</span> _dow_label = [<span class="hljs-string">'mo'</span>, <span class="hljs-string">'tu'</span>, <span class="hljs-string">'we'</span>, <span class="hljs-string">'th'</span>, <span class="hljs-string">'fr'</span>, <span class="hljs-string">'sa'</span>, <span class="hljs-string">'su'</span>];</pre></div></div>
             
         </li>
         
@@ -164,6 +162,23 @@ The architecture and software structure is freely inspired by <a href="http://fp
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>CHECKME: non sono sicuro di cosa volesse fare con questo
+var _dow_number = _dow_label.length();</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> __DEFAULT_REGISTRY_FILE = <span class="hljs-string">"./registry.json"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="time-class">time class</h1>
@@ -176,11 +191,11 @@ The architecture and software structure is freely inspired by <a href="http://fp
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>String rapresentation of past, now, future</p>
 
@@ -194,11 +209,11 @@ time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <h2 id="time_past">time_past</h2>
 <blockquote>
@@ -214,11 +229,11 @@ time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <h2 id="time_now">time_now</h2>
 <blockquote>
@@ -234,11 +249,11 @@ time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h2 id="time_future">time_future</h2>
 <blockquote>
@@ -254,14 +269,15 @@ time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <h2 id="parse_time-parsetime-">parse_time (parseTime)</h2>
-<p>Given a valid datetime string or PAST/FUTURE/NOW string return a new Date obj or PAST/FUTURE/NOW</p>
+<p>Given a valid datetime string or PAST/FUTURE/NOW string return a new Date obj or PAST/FUTURE/NOW
+Static function. CHECKME: verificare quali funzioni serve lasciare statiche</p>
 
             </div>
             
@@ -290,11 +306,11 @@ time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></
         </li>
         
         
-        <li id="section-12">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <h2 id="unparse_time-unparsetime-">unparse_time (unParseTime)</h2>
 <p>Given a valid datetime or PAST/FUTURE/NOW string return a string representation
@@ -326,11 +342,11 @@ Static function</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <h2 id="duration-functions">Duration functions</h2>
 <h3 id="parse_dur-parsedur-">parse_dur (parseDur)</h3>
@@ -348,11 +364,11 @@ Static function</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>The returned obj has the input in position 0 </p>
 
@@ -369,11 +385,11 @@ Static function</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <h3 id="unparse_dur-unparsedur-">unparse_dur (unParseDur)</h3>
 <p>Converts a string representing a duration in seconds</p>
@@ -387,11 +403,11 @@ Static function</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>The returned obj has the input in position 0 </p>
 
@@ -413,11 +429,11 @@ time.unParseDur = time.parse_dur;</pre></div></div>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>This is not defined in Javascript</p>
 
@@ -430,11 +446,11 @@ time.unParseDur = time.parse_dur;</pre></div></div>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <h2 id="areequal">areEqual</h2>
 <blockquote>
@@ -448,11 +464,11 @@ time.unParseDur = time.parse_dur;</pre></div></div>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Are special case string?</p>
 
@@ -467,11 +483,11 @@ time.unParseDur = time.parse_dur;</pre></div></div>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>We convert all to Date</p>
 
@@ -491,11 +507,11 @@ time.unParseDur = time.parse_dur;</pre></div></div>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="when-class">when class</h1>
@@ -521,11 +537,11 @@ a and b could be strings (past,now,future) or Date obj</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Set one of the to date in when depending on the type of value we pass</p>
 
@@ -545,11 +561,11 @@ a and b could be strings (past,now,future) or Date obj</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <h2 id="parse">parse</h2>
 <p>From a valid when string , set the details in the whne instance</p>
@@ -561,11 +577,11 @@ a and b could be strings (past,now,future) or Date obj</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>First separate the period from the value and parse it</p>
 
@@ -580,11 +596,11 @@ a and b could be strings (past,now,future) or Date obj</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>then try to split duration or range</p>
 
@@ -609,11 +625,11 @@ a and b could be strings (past,now,future) or Date obj</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>this._a = time.parse_time(valsplit[0])</p>
 
@@ -643,11 +659,11 @@ when.prototype.is_infinite = <span class="hljs-function"><span class="hljs-keywo
         </li>
         
         
-        <li id="section-27">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <blockquote>
 <p>Return True if this scope defines a definite time 
@@ -666,11 +682,11 @@ or a definite time interval.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <blockquote>
 <p>Return True if this temporal scope refers to a
@@ -688,11 +704,11 @@ or Results.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <h2 id="_datetimes">_datetimes</h2>
 <blockquote>
@@ -738,11 +754,11 @@ or Results.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h2 id="duration">duration</h2>
 <blockquote>
@@ -764,11 +780,11 @@ or Results.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>return (se[1].getTime() - se[0].getTime());</p>
 
@@ -781,11 +797,11 @@ or Results.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <h2 id="timer_delays">timer_delays</h2>
 <p>Returns a tuple with delays for timers to signal the start and end of
@@ -827,11 +843,11 @@ when a temporal scope is expressed in terms of duration, and to
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>detect expired temporal scope</p>
 
@@ -856,11 +872,11 @@ when.prototype.period = <span class="hljs-function"><span class="hljs-keyword">f
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <h2 id="in_scope">in_scope</h2>
 <blockquote>
@@ -876,11 +892,11 @@ when.prototype.period = <span class="hljs-function"><span class="hljs-keyword">f
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <h1 id="sort_scope">sort_scope</h1>
 <blockquote>
@@ -916,11 +932,11 @@ or &gt; 0 if time t falls after this scope. </p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <h2 id="follows">follows</h2>
 <blockquote>
@@ -940,11 +956,11 @@ or &gt; 0 if time t falls after this scope. </p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="schedule-class">schedule class</h1>
@@ -958,18 +974,32 @@ It is a wrap-aroud of node cron library (<a href="https://github.com/ncb000gt/no
             </div>
             
             <div class="content"><div class='highlight'><pre>
-<span class="hljs-keyword">var</span> Scheduler = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
-    <span class="hljs-keyword">this</span>.jobs = []; <span class="hljs-comment">// Array of all scheduled jobs</span>
+<span class="hljs-keyword">var</span> Scheduler = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>CHECKME: verificare cosa fare e come per eliminare dal array i job scaduti</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.jobs = []; <span class="hljs-comment">// Array of all scheduled jobs</span>
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-38">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <h2 id="addjob">addJob</h2>
 <blockquote>
@@ -990,11 +1020,11 @@ It is a wrap-aroud of node cron library (<a href="https://github.com/ncb000gt/no
         </li>
         
         
-        <li id="section-39">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="primitive-types">Primitive Types</h1>
@@ -1009,11 +1039,11 @@ It is a wrap-aroud of node cron library (<a href="https://github.com/ncb000gt/no
         </li>
         
         
-        <li id="section-40">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <blockquote>
 <p>   In general, client code will not need to interact with Primitives;
@@ -1034,11 +1064,11 @@ Here we have a single class with a type and single functions that behave differe
         </li>
         
         
-        <li id="section-41">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p><strong>The primitive type is the key of each type</strong>
 If some specific constrains function os defined, it overloads the default one</p>
@@ -1066,7 +1096,7 @@ If some specific constrains function os defined, it overloads the default one</p
             <span class="hljs-string">"list"</span> : {
                  met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
                     <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
-                },
+                }
             }
         }
      },
@@ -1088,7 +1118,24 @@ If some specific constrains function os defined, it overloads the default one</p
         label: <span class="hljs-string">"natural"</span>,
         isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> utility.isInt(value);},
         unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value.toString();},
-        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(value);}
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(value);},
+        constraints : {
+            <span class="hljs-string">"range"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> ((<span class="hljs-built_in">parseInt</span>(value) &gt;= <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>._param.valA)) &amp;&amp; (<span class="hljs-built_in">parseInt</span>(value) &lt;= <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>._param.valB)));
+                }
+            },
+            <span class="hljs-string">"list"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
+                }
+            },
+            <span class="hljs-string">"singleton"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (value === <span class="hljs-keyword">this</span>._param);
+                }
+            }
+        }
      },
     <span class="hljs-string">"REAL"</span>:{
         label: <span class="hljs-string">"real"</span>,
@@ -1100,7 +1147,24 @@ If some specific constrains function os defined, it overloads the default one</p
         label: <span class="hljs-string">"ip"</span>,
         isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> (<span class="hljs-regexp">/^(\d{1,3}\.){3,3}\d{1,3}$/</span>.test(value))},
         unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> value; },
-        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value}
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value},
+        constraints : {
+            <span class="hljs-string">"range"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                   <span class="hljs-keyword">return</span> ((utility.compareIP(<span class="hljs-keyword">this</span>._param.valA , value) &gt;= <span class="hljs-number">0</span>) &amp;&amp; (utility.compareIP(<span class="hljs-keyword">this</span>._param.valB , value) &lt;= <span class="hljs-number">0</span>));
+                }
+            },
+            <span class="hljs-string">"list"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
+                }
+            },
+            <span class="hljs-string">"singleton"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (value === <span class="hljs-keyword">this</span>._param);
+                }
+            }
+        }
      },
     <span class="hljs-string">"IP6"</span>:{
         label: <span class="hljs-string">"ip6"</span>,
@@ -1126,11 +1190,11 @@ If some specific constrains function os defined, it overloads the default one</p
         </li>
         
         
-        <li id="section-42">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <h1 id="we-expose-these-const-in-order-to-simpify-coding">We expose these const in order to simpify coding</h1>
 <p>They can be used to refere to a specific primitive, instead of usgin the internal string</p>
@@ -1156,11 +1220,11 @@ Primitive.prototype.setType = <span class="hljs-function"><span class="hljs-keyw
         </li>
         
         
-        <li id="section-43">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>Do we know about this type?</p>
 
@@ -1175,11 +1239,11 @@ Primitive.prototype.setType = <span class="hljs-function"><span class="hljs-keyw
         </li>
         
         
-        <li id="section-44">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <h2 id="knownprimitive">knownPrimitive</h2>
 <p>is prim a kwnown primitive?</p>
@@ -1193,11 +1257,11 @@ Primitive.prototype.setType = <span class="hljs-function"><span class="hljs-keyw
         </li>
         
         
-        <li id="section-45">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <h2 id="parse">parse</h2>
 <blockquote>
@@ -1221,11 +1285,11 @@ Primitive.prototype.setType = <span class="hljs-function"><span class="hljs-keyw
         </li>
         
         
-        <li id="section-46">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <h2 id="unparse">unparse</h2>
 <blockquote>
@@ -1245,11 +1309,11 @@ IP address manipulation freely inspired by <a href="https://github.com/indutny/n
         </li>
         
         
-        <li id="section-47">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <h2 id="isvalid">isValid</h2>
 <p>This is not in the reference implementation
@@ -1268,11 +1332,11 @@ Call the primitive isValid defined in the PRIMITIVES obj</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <h1 id="element">Element</h1>
 <blockquote>
@@ -1289,16 +1353,17 @@ An element can be create directly from a definition of the registry, passing the
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Element = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Element = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;</pre></div></div>
             
         </li>
         
         
-        <li id="section-49">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <p>If config is not defined, set default Values</p>
 
@@ -1308,9 +1373,10 @@ An element can be create directly from a definition of the registry, passing the
         config = {};
     }
     <span class="hljs-keyword">if</span> (_.isObject(config)){
-        <span class="hljs-keyword">this</span>._name = config.name || <span class="hljs-string">"Undef"</span>;
+        <span class="hljs-keyword">this</span>._name = config.name || config._name || <span class="hljs-string">"Undef"</span>;
         (config.prim)?<span class="hljs-keyword">this</span>._prim = config.prim.toUpperCase():<span class="hljs-keyword">this</span>._prim = Primitive.UNDEF;
-        <span class="hljs-keyword">this</span>._desc = config.desc || <span class="hljs-string">""</span>;  
+        (config._prim)?<span class="hljs-keyword">this</span>._prim = config._prim.toUpperCase():<span class="hljs-keyword">this</span>._prim = Primitive.UNDEF;
+        <span class="hljs-keyword">this</span>._desc = config.desc || config._desc || <span class="hljs-string">""</span>;
     }<span class="hljs-keyword">else</span>{
         <span class="hljs-keyword">var</span> el = Element.getFromName(config);
         <span class="hljs-keyword">this</span>._name = el.name || <span class="hljs-string">"Undef"</span>;
@@ -1321,11 +1387,11 @@ An element can be create directly from a definition of the registry, passing the
         </li>
         
         
-        <li id="section-50">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>In this implementation contrains are part of the Element class
 This json contains the constraints defined for a specific instance
@@ -1337,17 +1403,43 @@ with the uniqueID as key</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._constrains = { __uniqueID__ : <span class="hljs-number">0</span>,
-                        details : {}}; 
+                        details : {}};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>If the configuration contains constrains, ADD THEM to the element!!!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (config._constrains){
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt;config._constrains. __uniqueID__ ; i++){
+            self.addConstraint(config._constrains.details[i]);
+        }
+    }
+}
+
+Element.prototype.getDescription = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._desc;
+}
+Element.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._name;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-51">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p>Array containing the known elements</p>
 
@@ -1358,11 +1450,11 @@ with the uniqueID as key</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-55">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
               <p>Initialize the registry from a json file
 It is a static method, so it could be called without instantiate an element</p>
@@ -1385,11 +1477,11 @@ It is a static method, so it could be called without instantiate an element</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <p>Return an element entry from the registry from the name
 Static method, so it could be called without instantiate an element</p>
@@ -1411,11 +1503,11 @@ Static method, so it could be called without instantiate an element</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <h2 id="parse">parse</h2>
 <blockquote>
@@ -1431,11 +1523,11 @@ Static method, so it could be called without instantiate an element</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <h2 id="unparse">unparse</h2>
 <blockquote>
@@ -1451,11 +1543,11 @@ Static method, so it could be called without instantiate an element</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-59">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-59">&#182;</a>
               </div>
               <h2 id="compatible_with">compatible_with</h2>
 <blockquote>
@@ -1475,11 +1567,11 @@ element rval; that is, <span class="hljs-keyword">if</span> transformation_to wi
         </li>
         
         
-        <li id="section-57">
+        <li id="section-60">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-60">&#182;</a>
               </div>
               <h2 id="transformation_to">transformation_to</h2>
 <blockquote>
@@ -1498,11 +1590,11 @@ element rval; that is, <span class="hljs-keyword">if</span> transformation_to wi
         </li>
         
         
-        <li id="section-58">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <h1 id="constraints">CONSTRAINTS</h1>
 <p>In this  implementation, constraints are part of the Element class
@@ -1514,11 +1606,11 @@ The consequence is that we use a procedural approach intead of a pure obj orient
         </li>
         
         
-        <li id="section-59">
+        <li id="section-62">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
               <h2 id="contraints-obj">contraints obj</h2>
 <p>Depends by the primitive and the type of constraints (es: integer range)</p>
@@ -1537,21 +1629,21 @@ The consequence is that we use a procedural approach intead of a pure obj orient
         <span class="hljs-keyword">if</span> (config.prim &amp;&amp; Primitive.knownPrimitive(config.prim))
             <span class="hljs-keyword">this</span>._prim=config.prim.toUpperCase();
         <span class="hljs-keyword">if</span> (config.name)
-                <span class="hljs-keyword">this</span>._name = config.name;
+                <span class="hljs-keyword">this</span>._name = config.name || config._name;
         <span class="hljs-keyword">if</span> (config.type)
-                <span class="hljs-keyword">this</span>._type = config.type;
+                <span class="hljs-keyword">this</span>._type = config.type || config._type;
          <span class="hljs-keyword">if</span> (config.param)
-                <span class="hljs-keyword">this</span>._param = config.param;
+                <span class="hljs-keyword">this</span>._param = config.param || config._param;
     }</pre></div></div>
             
         </li>
         
         
-        <li id="section-60">
+        <li id="section-63">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+                <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
               <p>Do we have specific functions for this primitive and this type of constrain?</p>
 
@@ -1567,17 +1659,18 @@ The consequence is that we use a procedural approach intead of a pure obj orient
 }
 
 Constraints.UNDEF = <span class="hljs-string">"undef"</span>;
+Constraints.SINGLETON = <span class="hljs-string">"singleton"</span>;
 Constraints.RANGE = <span class="hljs-string">"range"</span>;
 Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-comment">// List of acceptable values</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-61">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <p>Matches all constraints</p>
 
@@ -1588,11 +1681,11 @@ Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-co
         </li>
         
         
-        <li id="section-62">
+        <li id="section-65">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-62">&#182;</a>
+                <a class="pilcrow" href="#section-65">&#182;</a>
               </div>
               <h2 id="parse_constraint">parse_constraint</h2>
 <blockquote>
@@ -1613,11 +1706,11 @@ Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-co
         </li>
         
         
-        <li id="section-63">
+        <li id="section-66">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-63">&#182;</a>
+                <a class="pilcrow" href="#section-66">&#182;</a>
               </div>
               <p>If the string contains a RANGE_SEP, it should be a range constraint</p>
 
@@ -1638,11 +1731,11 @@ Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-co
         </li>
         
         
-        <li id="section-64">
+        <li id="section-67">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-64">&#182;</a>
+                <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
               <p>If the string contains a RANGE_SEP, it should be a list constraint</p>
 
@@ -1657,18 +1750,57 @@ Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-co
             param: values
         }
         ret = <span class="hljs-keyword">new</span> Constraints(options);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>Single value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> {
+         options = {
+            type: Constraints.SINGLETON,
+            prim: prim || Primitive.UNDEF,
+            name: <span class="hljs-string">""</span>,
+            param: sval
+        }
+        ret = <span class="hljs-keyword">new</span> Constraints(options);
     }
     <span class="hljs-keyword">return</span> ret || <span class="hljs-keyword">new</span> Constraints();
+}
+
+Constraints.prototype.unParse_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>._type){
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"range"</span>:
+            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>._param.valA + <span class="hljs-string">" ... "</span>+<span class="hljs-keyword">this</span>._param.valB);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"list"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"singleton"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+           <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+    }
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-65">
+        <li id="section-69">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-65">&#182;</a>
+                <a class="pilcrow" href="#section-69">&#182;</a>
               </div>
               <h1 id="addconstrain">addConstrain</h1>
 <blockquote>
@@ -1683,18 +1815,17 @@ Return the constrain internal id so that it ca be referred programmatically</p>
             
             <div class="content"><div class='highlight'><pre>Element.prototype.addConstraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span> , cons;
-    
     <span class="hljs-keyword">if</span> (!_.isObject(config)){
         cons = Constraints.parse_constraint(self._prim , config);</pre></div></div>
             
         </li>
         
         
-        <li id="section-66">
+        <li id="section-70">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-66">&#182;</a>
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p>Is the prim compatible with ours?</p>
 
@@ -1703,15 +1834,14 @@ Return the constrain internal id so that it ca be referred programmatically</p>
             <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (cons._prim !== self._prim)
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Error adding constraints. The contraints type is incompatible with element type"</span>);
     }<span class="hljs-keyword">else</span>{
-        <span class="hljs-keyword">if</span> ((_.isUndefined(config.type))){
+        <span class="hljs-keyword">if</span> ((_.isUndefined(config.type)) &amp;&amp; (_.isUndefined(config._type))){
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Constrain: missing param'</span>);
         }
-        <span class="hljs-keyword">var</span> params = config.constraintOptions || {};
         <span class="hljs-keyword">var</span> options = {
-            type: config.type,
+            type: config.type || config._type,
             prim: self._prim.toUpperCase(),
-            name: config.name,
-            param: params
+            name: config.name || config._name,
+            param: config.param || config._param
         }
         cons = <span class="hljs-keyword">new</span> Constraints(options);
     }</pre></div></div>
@@ -1719,11 +1849,11 @@ Return the constrain internal id so that it ca be referred programmatically</p>
         </li>
         
         
-        <li id="section-67">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-67">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>ADD</p>
 
@@ -1738,11 +1868,11 @@ Return the constrain internal id so that it ca be referred programmatically</p>
         </li>
         
         
-        <li id="section-68">
+        <li id="section-72">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-68">&#182;</a>
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
               <h2 id="_clear_constraint">_clear_constraint</h2>
 <p>Clear the constraint identified by constraintsId or all constraints associated to the Element, if any</p>
@@ -1761,11 +1891,11 @@ Return the constrain internal id so that it ca be referred programmatically</p>
         </li>
         
         
-        <li id="section-69">
+        <li id="section-73">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-69">&#182;</a>
+                <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
               <h2 id="setconstraintsname">setConstraintsName</h2>
 <p>set the name of a specific constraint. Name uniqueness is not granted
@@ -1780,11 +1910,11 @@ Usefull if I want to refer to a constraints by name</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-74">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <p>Return a specific constraints set in element
 If constraintsId is undefined or null, return all the constraints</p>
@@ -1801,11 +1931,11 @@ If constraintsId is undefined or null, return all the constraints</p>
         </li>
         
         
-        <li id="section-71">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <h2 id="met_by">met_by</h2>
 <p>checks is a value (of any type) matches a constraint set in Element
@@ -1823,11 +1953,11 @@ It is a usefull shortcut to the constraints met_by function</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <p>It will never become true :&gt;)</p>
 
@@ -1846,11 +1976,11 @@ It is a usefull shortcut to the constraints met_by function</p>
         </li>
         
         
-        <li id="section-73">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <h2 id="isvalid">isValid</h2>
 <p>Shortcut to Element primitive isValid method</p>
@@ -1864,11 +1994,11 @@ It is a usefull shortcut to the constraints met_by function</p>
         </li>
         
         
-        <li id="section-74">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="parameter">Parameter</h1>
@@ -1884,10 +2014,23 @@ The creation of a parameter can be done directly through an Element instance, wi
     <span class="hljs-keyword">if</span> (el <span class="hljs-keyword">instanceof</span> Element)
         <span class="hljs-keyword">this</span>._element = el;
     <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_.isString(el))
-        <span class="hljs-keyword">this</span>._element = <span class="hljs-keyword">new</span> Element(el);
-    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._element)
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Parameter el is not valid"</span>);
-    <span class="hljs-keyword">this</span>.setValue(value);
+        <span class="hljs-keyword">this</span>._element = <span class="hljs-keyword">new</span> Element(el);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>   if (!this._element)
+       throw new Error(“Parameter el is not valid”);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setValue(value);
 }
 
 Parameter.prototype.hasValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
@@ -1897,11 +2040,11 @@ Parameter.prototype.hasValue = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-75">
+        <li id="section-80">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <h2 id="setvalue">setValue</h2>
 <p>Set a specific value to a parameter.
@@ -1911,12 +2054,47 @@ If the value does not meet the isValid func defined for the PAramter primitive a
             
             <div class="content"><div class='highlight'><pre>Parameter.prototype.setValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
     <span class="hljs-keyword">if</span> (_.isUndefined(val))
-        <span class="hljs-keyword">return</span>;
-    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>._element.isValid(val)) &amp;&amp; (<span class="hljs-keyword">this</span>._element.met_by(val)))
+        <span class="hljs-keyword">return</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>   console.log(this);
+   console.log(“value:”+val);
+   console.log(this._element.isValid(val))
+   console.log((this._element.met_by(val)))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>._element.isValid(val)) &amp;&amp; (<span class="hljs-keyword">this</span>._element.met_by(val)))
         <span class="hljs-keyword">this</span>._value = val;
     <span class="hljs-keyword">else</span>
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Value is not valid for this parameter"</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>Exposes the Element met_by</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Parameter.prototype.met_by = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element.met_by(value);
 }
+
 Parameter.prototype.getValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._value;
 }
@@ -1926,16 +2104,23 @@ Parameter.prototype.getConstraints = <span class="hljs-function"><span class="hl
 
 Parameter.prototype._clear_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(constraintId)</span>{</span>
     <span class="hljs-keyword">this</span>._element._clear_constraint(constraintId);
+}
+
+Parameter.prototype.getDescription = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element._desc;
+}
+Parameter.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element._name;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-76">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <h2 id="to_dict">to_dict</h2>
 <p>Return a serialized (string) json representation of the parameter</p>
@@ -1949,11 +2134,11 @@ Parameter.prototype._clear_constraint = <span class="hljs-function"><span class=
         </li>
         
         
-        <li id="section-77">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <h1 id="metravalue">Metravalue</h1>
 <blockquote>
@@ -1969,11 +2154,11 @@ Parameter.prototype._clear_constraint = <span class="hljs-function"><span class=
         </li>
         
         
-        <li id="section-78">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
               <h2 id="resultcolumn">ResultColumn</h2>
 <blockquote>
@@ -1999,15 +2184,15 @@ Parameter.prototype._clear_constraint = <span class="hljs-function"><span class=
         </li>
         
         
-        <li id="section-79">
+        <li id="section-86">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
               <h2 id="setvalue">setValue</h2>
 <p>Set a specific value to a ResultColumn.
-val MUST be a collection in the form {key:value,…}
+val can  be a collection in the form {key:value,…}
 If one of the values does not meet the isValid func defined for the Element primitive and the defined constraints, throws an error</p>
 
             </div>
@@ -2023,8 +2208,10 @@ If one of the values does not meet the isValid func defined for the Element prim
                     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Value is not valid for this parameter"</span>);
              }
         }
-    }<span class="hljs-keyword">else</span>
+    }<span class="hljs-keyword">else</span>{
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"You should provide a json to ResultColumn.prototype.setValue"</span>);
+    }
+
 }
 ResultColumn.prototype.__setitem__ == ResultColumn.prototype.setValue;
 
@@ -2049,11 +2236,11 @@ ResultColumn.prototype.getValue = <span class="hljs-function"><span class="hljs-
         </li>
         
         
-        <li id="section-80">
+        <li id="section-87">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <h1 id="statement">Statement</h1>
 <p>A Statement is an assertion about the properties of a measurement
@@ -2066,32 +2253,38 @@ Configuration can be taken from a dictionary, or with configuration paramenters<
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Statement = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
-    <span class="hljs-keyword">if</span> (!config)
-        config = {};
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">if</span> (!config){
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._config){
+            config = <span class="hljs-keyword">this</span>._config;
+            <span class="hljs-keyword">this</span>._config = <span class="hljs-literal">null</span>;
+        }
+    }
     <span class="hljs-keyword">if</span> (config.dictval)
         config = <span class="hljs-keyword">this</span>._from_dict(config.dictval);</pre></div></div>
             
         </li>
         
         
-        <li id="section-81">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p>If we are importing from dict the names are the same as internal (with leading <em>), otherwise it is simpler to have no trailing </em></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._params = config.params || config._params || {};
+            <div class="content"><div class='highlight'><pre>     <span class="hljs-keyword">this</span>._params =  config.params || config._params || {};
+
     <span class="hljs-keyword">this</span>._metadata = config.metadata || config._metadata || {};
     <span class="hljs-keyword">this</span>._resultcolumns = config.resultcolumns || config._resultcolumns || {};
     <span class="hljs-keyword">this</span>._link = config.link || config._link || <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>._verb = config.verb || config._verb || Statement.VERB_MEASURE;
     <span class="hljs-keyword">this</span>._label = config.label || config._label || <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>._when = config.when || config._when || when_infinite;
-    <span class="hljs-keyword">this</span>._token = config.token || config._token || <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>._token = config.token || config._token || <span class="hljs-keyword">this</span>._default_token();
     <span class="hljs-keyword">this</span>._schedule = config.schedule || config._schedule || <span class="hljs-literal">null</span>; <span class="hljs-comment">// completely ignored unless this is a specification</span>
 }
 
@@ -2103,11 +2296,11 @@ Statement.VERB_STORE = <span class="hljs-string">"store"</span>;</pre></div></di
         </li>
         
         
-        <li id="section-82">
+        <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
               <h3 id="parameter">parameter</h3>
 <h2 id="add_parameter">add_parameter</h2>
@@ -2117,31 +2310,17 @@ Constraints should be added to the element BEFORE adding to the Statement</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>Statement.prototype.add_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parameter_name , element ,  value)</span>{</span>
-    <span class="hljs-keyword">this</span>._params[parameter_name] = <span class="hljs-keyword">new</span> Parameter(element , value);</pre></div></div>
+    <span class="hljs-keyword">this</span>._params[parameter_name] = <span class="hljs-keyword">new</span> Parameter(element , value);
+}</pre></div></div>
             
         </li>
         
         
-        <li id="section-83">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
-              </div>
-              <p>this._params[parameter_name]._element._name = parameter_name;</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>}</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-84">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <h2 id="add_parameter_from_dict">add_parameter_from_dict</h2>
 <p>Add a parameter to the statement from a (valid) dictionary</p>
@@ -2184,16 +2363,21 @@ Statement.prototype.set_parameter_value = <span class="hljs-function"><span clas
 Statement.prototype.del_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._params[param_name])
         <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>._params[param_name];
+}
+
+Statement.prototype.get_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._params[param_name])
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._params[param_name];
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-85">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <h3 id="metadata">metadata</h3>
 <blockquote>
@@ -2230,11 +2414,11 @@ Statement.prototype.set_metadata_value = <span class="hljs-function"><span class
         </li>
         
         
-        <li id="section-86">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <h3 id="result_column-in-statement">result_column in Statement</h3>
 <blockquote>
@@ -2244,17 +2428,19 @@ Statement.prototype.set_metadata_value = <span class="hljs-function"><span class
             </div>
             
             <div class="content"><div class='highlight'><pre>Statement.prototype.add_result_column = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(elem_name , element)</span>{</span>
-    <span class="hljs-keyword">this</span>._resultcolumns[elem_name] = <span class="hljs-keyword">new</span> ResultColumn(element);
+    <span class="hljs-keyword">var</span> resCol = <span class="hljs-keyword">new</span> ResultColumn(element);
+    <span class="hljs-keyword">this</span>._resultcolumns[elem_name] = resCol;
+    <span class="hljs-keyword">return</span> resCol;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-87">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <h3 id="here-we-set-a-result-in-a-result_column">Here we set a result in a result_column</h3>
 <blockquote>
@@ -2271,11 +2457,11 @@ value should be a key,value obj</p>
         </li>
         
         
-        <li id="section-88">
+        <li id="section-94">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p>Number of result rows in a specific resultColumn</p>
 
@@ -2304,11 +2490,11 @@ Statement.prototype.has_result_columns = <span class="hljs-function"><span class
         </li>
         
         
-        <li id="section-89">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <h3 id="link">link</h3>
 <blockquote>
@@ -2328,11 +2514,11 @@ Statement.prototype.set_link = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-90">
+        <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
               <h3 id="label">label</h3>
 
@@ -2349,11 +2535,11 @@ Statement.prototype.set_label = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-91">
+        <li id="section-97">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
               <h3 id="when">when</h3>
 <blockquote>
@@ -2369,11 +2555,11 @@ Statement.prototype.set_label = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-92">
+        <li id="section-98">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
               <h3 id="set_when">set_when</h3>
 <blockquote>
@@ -2395,11 +2581,11 @@ We can pass a When instance or directly a valid string for a when initialization
         </li>
         
         
-        <li id="section-93">
+        <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>If there an error in the parameter, set to now</p>
 
@@ -2414,11 +2600,11 @@ We can pass a When instance or directly a valid string for a when initialization
         </li>
         
         
-        <li id="section-94">
+        <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
               <h2 id="_schema_hash">_schema_hash</h2>
 <p>Return a hex string uniquely identifying the set of parameters
@@ -2433,11 +2619,11 @@ and result columns (the schema) of this statement.</p>
         </li>
         
         
-        <li id="section-95">
+        <li id="section-101">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
+                <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
               <h2 id="_pv_hash">_pv_hash</h2>
 <p>Return a hex string uniquely identifying the set of parameters,
@@ -2462,11 +2648,11 @@ of this statement. Used as a specification key.</p>
         </li>
         
         
-        <li id="section-96">
+        <li id="section-102">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-96">&#182;</a>
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
               <h2 id="_mpcv_hash">_mpcv_hash</h2>
 <p>Return a hex string uniquely identifying the set of parameters,
@@ -2486,11 +2672,11 @@ Used as a complete token for statements.</p>
         </li>
         
         
-        <li id="section-97">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-97">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
               <p>Parameters</p>
 
@@ -2504,11 +2690,11 @@ Used as a complete token for statements.</p>
         </li>
         
         
-        <li id="section-98">
+        <li id="section-104">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
+                <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
               <p>Metadata</p>
 
@@ -2536,16 +2722,24 @@ Statement.prototype.get_token = <span class="hljs-function"><span class="hljs-ke
     <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._token)
             <span class="hljs-keyword">this</span>._token = <span class="hljs-keyword">this</span>._default_token();
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}
+Statement.prototype.update_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">this</span>._token = <span class="hljs-keyword">this</span>._default_token();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}
+Statement.prototype.set_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span>{</span>
+    <span class="hljs-keyword">this</span>._token = token;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-99">
+        <li id="section-105">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               <h2 id="_result_rows">_result_rows</h2>
 <p>Returns the result rows</p>
@@ -2567,11 +2761,11 @@ Statement.prototype.get_token = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-100">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-100">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <h2 id="to_dict">to_dict</h2>
 <p>Convert a Statement to a dictionary (JSON FORMAT)</p>
@@ -2585,11 +2779,11 @@ Statement.prototype.get_token = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-101">
+        <li id="section-107">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-101">&#182;</a>
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <h2 id="_from_dict">_from_dict</h2>
 <p>Fill in this Statement with values from a dictionary (Json format)</p>
@@ -2603,11 +2797,11 @@ Statement.prototype.get_token = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-102">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-102">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <h1 id="validate">validate</h1>
 <p>Checks that all the parameters have values set</p>
@@ -2634,11 +2828,11 @@ Statement.prototype._clear_constraints = <span class="hljs-function"><span class
         </li>
         
         
-        <li id="section-103">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <hr>
 <pre><code>                             CAPABILITY
@@ -2671,11 +2865,36 @@ Capability.prototype.kind_str = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-104">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <h2 id="fulfills">fulfills</h2>
+<p>verify that the schema hash is equal 
+CHECKME: not clear to me…
+Capability.prototype.fulfills = function(){</p>
+<p>//        if this._schema_hash() != Capability._schema_hash():
+//            return False</p>
+<pre><code>   <span class="hljs-comment">// Verify that the specification is within the capability's temporal scope</span>
+   <span class="hljs-keyword">if</span> ! <span class="hljs-keyword">this</span>._when.follows(capability.when()):
+       <span class="hljs-keyword">return</span> False
+
+   # Works <span class="hljs-keyword">for</span> me.
+   <span class="hljs-keyword">return</span> True
+</code></pre><p>}</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <h2 id="__params_from_dict">__params_from_dict</h2>
 <p>Fill in parameters from a dictionary; used internally.
@@ -2696,11 +2915,11 @@ FIXME: do some in deep test with this!</p>
         </li>
         
         
-        <li id="section-105">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-105">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <h1 id="specification">Specification</h1>
 <p>A Specification represents a request for an mPlane component to do 
@@ -2715,11 +2934,11 @@ FIXME: do some in deep test with this!</p>
         </li>
         
         
-        <li id="section-106">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-106">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p>   Specifications are created either by passing a Capability the
    Specification is intended to use as the capability= argument of
@@ -2730,18 +2949,20 @@ FIXME: do some in deep test with this!</p>
             
             <div class="content"><div class='highlight'><pre>
 <span class="hljs-keyword">var</span> Specification = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
-    Statement.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
-    <span class="hljs-keyword">this</span>._schedule = config.schedule || sconfig._schedule || <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">this</span>._config = config;
+
+    <span class="hljs-keyword">this</span>._schedule = config.schedule || config._schedule || <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">if</span> (config.capability){</pre></div></div>
             
         </li>
         
         
-        <li id="section-107">
+        <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
               <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
 
@@ -2754,7 +2975,23 @@ FIXME: do some in deep test with this!</p>
         <span class="hljs-keyword">this</span>._resultcolumns = config.capability._resultcolumns || config.capability.resultcolumns || <span class="hljs-literal">null</span>;
     }
     <span class="hljs-keyword">if</span> (config.when || config._when)
-        <span class="hljs-keyword">this</span>._when = config.when || config._when;
+        <span class="hljs-keyword">this</span>._when = config.when || config._when;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>Call the Statement (super) contructor</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    Statement.apply(<span class="hljs-keyword">this</span>);
+
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<span class="hljs-comment">// Chaining</span>
 }
 util.inherits(Specification, Statement);
@@ -2773,16 +3010,25 @@ Specification.prototype.has_schedule = <span class="hljs-function"><span class="
 
 Specification.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
         <span class="hljs-keyword">return</span> (<span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>));
+}
+
+<span class="hljs-comment">/**
+ * Returns a parameter object, from the name of a param defined in the specification
+ * @param paramName
+ * @returns {Paramenter}
+ */</span>
+Specification.prototype.getParameter =<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(paramName)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Parameter(<span class="hljs-keyword">new</span> Element(<span class="hljs-keyword">this</span>._params[paramName]._element) , <span class="hljs-keyword">this</span>._params[paramName]._value);
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-108">
+        <li id="section-116">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
               <h1 id="from_dict">from_dict</h1>
 <p>Return a Specification obj from a (valid) dictionary 
@@ -2796,16 +3042,33 @@ Throws an error in case the dictionary is not valid</p>
         <span class="hljs-keyword">return</span> spec;
     <span class="hljs-keyword">else</span>
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"The dictionary does not contain a valid Specification"</span>);
+}
+Specification.prototype.setParameterValue =<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(paramName , value)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <p>FIXME: setting in this way is very BAD!!! We should use the parameter as an object and use its own method</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._params[paramName]._value = value;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-109">
+        <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
               <h1 id="result">Result</h1>
 
@@ -2819,11 +3082,11 @@ Throws an error in case the dictionary is not valid</p>
         </li>
         
         
-        <li id="section-110">
+        <li id="section-119">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
               <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
 
@@ -2834,6 +3097,27 @@ Throws an error in case the dictionary is not valid</p>
         <span class="hljs-keyword">this</span>._metadata = config.capability._metadata || config.capability.metadata || <span class="hljs-literal">null</span>;
         <span class="hljs-keyword">this</span>._params = config.capability._params || config.capability.params || <span class="hljs-literal">null</span>;
         <span class="hljs-keyword">this</span>._resultcolumns = config.capability._resultcolumns || config.capability.resultcolumns || <span class="hljs-literal">null</span>;
+    }<span class="hljs-keyword">else</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
+              </div>
+              <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>         <span class="hljs-keyword">this</span>._verb = config._verb || config.verb || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._label = config._label || config.label || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._metadata = config._metadata || config.metadata || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._params = config._params || config.params || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._resultcolumns = config._resultcolumns || config.resultcolumns || <span class="hljs-literal">null</span>;
+
     }
     <span class="hljs-keyword">if</span> (config.when || config._when)
         <span class="hljs-keyword">this</span>._when = config.when || config._when;
@@ -2842,19 +3126,19 @@ Throws an error in case the dictionary is not valid</p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
               <p>allow parameters to take values other than constrained
-CheckME: i am not sure why this is needed…</p>
+FIXME: i am not sure why this is needed…
+this._clear_constraints();</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>     <span class="hljs-keyword">this</span>._clear_constraints();
-    
+            <div class="content"><div class='highlight'><pre>    
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<span class="hljs-comment">// Chaining</span>
 }
 util.inherits(Result, Statement);
@@ -2879,11 +3163,11 @@ Result.prototype.validate = <span class="hljs-function"><span class="hljs-keywor
         </li>
         
         
-        <li id="section-112">
+        <li id="section-122">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
               <h1 id="from_dict">from_dict</h1>
 <p>Return a Result obj from a (valid) dictionary 
@@ -2897,16 +3181,19 @@ Throws an error in case the dictionary is not valid</p>
         <span class="hljs-keyword">return</span> spec;
     <span class="hljs-keyword">else</span>
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"The dictionary does not contain a valid Result"</span>);
+}
+Result.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-113">
+        <li id="section-123">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
               <h2 id="set_result_value">set_result_value</h2>
 <p>Set a value for a specific column and key
@@ -2921,11 +3208,11 @@ Notice that val should be in the form {key: value}</p>
         </li>
         
         
-        <li id="section-114">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-114">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <h2 id="get_result_value">get_result_value</h2>
 <p>Get a value for a specific column and key
@@ -2940,11 +3227,11 @@ If key is not specified, return all the rows for that specific column</p>
         </li>
         
         
-        <li id="section-115">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-115">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <p> Notifications</p>
@@ -2955,11 +3242,11 @@ If key is not specified, return all the rows for that specific column</p>
         </li>
         
         
-        <li id="section-116">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-116">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <h1 id="barenotification">BareNotification</h1>
 <p>Notifications are used to send additional information between
@@ -2984,11 +3271,11 @@ If key is not specified, return all the rows for that specific column</p>
         </li>
         
         
-        <li id="section-117">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <h1 id="exception">Exception</h1>
 <p>A Component sends an Exception to a Client, or a Client to a 
@@ -3015,10 +3302,9 @@ Exception.prototype.get_token = <span class="hljs-function"><span class="hljs-ke
 
 Exception.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
-
 }
 
-Exception._from_dict(d){
+Exception._from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
     <span class="hljs-keyword">var</span> ret = <span class="hljs-built_in">JSON</span>.parse(d);
     <span class="hljs-keyword">if</span> (! ret <span class="hljs-keyword">instanceof</span> Exception)
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> error(<span class="hljs-string">"The dictionary should be a valid Exception instance"</span>);
@@ -3029,11 +3315,11 @@ Exception._from_dict(d){
         </li>
         
         
-        <li id="section-118">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-118">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <h1 id="statementnotification">StatementNotification</h1>
 <p>Common implementation superclass for notifications that 
@@ -3058,7 +3344,7 @@ Statement.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyw
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
 }
 
-Statement._from_dict(d){
+Statement._from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
     <span class="hljs-keyword">var</span> ret = <span class="hljs-built_in">JSON</span>.parse(d);
     <span class="hljs-keyword">if</span> (! ret <span class="hljs-keyword">instanceof</span> Statement)
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> error(<span class="hljs-string">"The dictionary should be a valid Statement instance"</span>);
@@ -3073,11 +3359,11 @@ Statement.prototype.kind_str = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-119">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-119">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <h1 id="receipt">Receipt</h1>
 <p>A component presents a receipt to a Client in lieu of a result, when the
@@ -3105,11 +3391,11 @@ Receipt.prototype.validate = <span class="hljs-function"><span class="hljs-keywo
         </li>
         
         
-        <li id="section-120">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <h1 id="redemption">Redemption</h1>
 <p>A client presents a Redemption to a component from which it has received
@@ -3128,22 +3414,23 @@ Receipt.prototype.validate = <span class="hljs-function"><span class="hljs-keywo
 }
 util.inherits(Redemption, StatementNotification);
     
-Redemption.protorype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+Redemption.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
         <span class="hljs-keyword">return</span> KIND_REDEMPTION;
 }
 
-Redemption.protorype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+
+Redemption.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validate();
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-121">
+        <li id="section-131">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-121">&#182;</a>
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <h1 id="withdrawal">Withdrawal</h1>
 <p>A Withdrawal cancels a Capability</p>
@@ -3169,11 +3456,11 @@ Withdrawal.prototype.validate = <span class="hljs-function"><span class="hljs-ke
         </li>
         
         
-        <li id="section-122">
+        <li id="section-132">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-122">&#182;</a>
+                <a class="pilcrow" href="#section-132">&#182;</a>
               </div>
               <h1 id="interrupt">Interrupt</h1>
 <p>An Interrupt cancels a Specification</p>
@@ -3199,11 +3486,11 @@ Interrupt.prototype.validate = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-123">
+        <li id="section-133">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-123">&#182;</a>
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
 <h1 id="utility-functions">Utility functions</h1>
@@ -3216,14 +3503,15 @@ Interrupt.prototype.validate = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-124">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
               <h2 id="_parse_numset-parsenumset-">_parse_numset (parseNumSet)</h2>
-<p>Parse a set to an array of integers</p>
+<p>Parse a set to an array of integers
+CHECKME:how do we handle non numeric values? parseInt will return NaN</p>
 
             </div>
             
@@ -3232,11 +3520,11 @@ Interrupt.prototype.validate = <span class="hljs-function"><span class="hljs-key
         </li>
         
         
-        <li id="section-125">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p>Iterate through each token from split and convert to integer</p>
 
@@ -3251,11 +3539,11 @@ utility.parseNumSet = utility._parse_numset;</pre></div></div>
         </li>
         
         
-        <li id="section-126">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <h2 id="_unparse_numset-unparsenumset-">_unparse_numset (unParseNumSet)</h2>
 <p>From an array of numbers to a string of values separated by SET_SEP</p>
@@ -3270,13 +3558,14 @@ utility.unParseNumSet = utility._unparse_numset;</pre></div></div>
         </li>
         
         
-        <li id="section-127">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <h2 id="return-an-array-of-day-of-week-from-a-string-with-set_sep-separator">Return an array of day of week from a string with SET_SEP separator</h2>
+<p>CHECKME: se ho capito bene restituisce un array con i numeri del giorno della settimana </p>
 
             </div>
             
@@ -3290,11 +3579,11 @@ utility.parseWdaySet = utility._parse_wdayset;</pre></div></div>
         </li>
         
         
-        <li id="section-128">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <h2 id="from-an-array-of-numbers-return-a-string-of-days-of-week-separated-by">From an array of numbers, return a string of days of week separated by</h2>
 
@@ -3314,16 +3603,44 @@ utility.isInt = <span class="hljs-function"><span class="hljs-keyword">function<
 
 utility.isReal = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(n)</span>{</span>
     <span class="hljs-keyword">return</span> ( !<span class="hljs-built_in">isNaN</span>(<span class="hljs-built_in">parseFloat</span> ( n )));
+}
+
+<span class="hljs-comment">/**
+ * Compares 2 IP addresses
+ * Return 1 if B&gt;A, -1 if B&lt;A, 0 if B=A
+ * @param A
+ * @param B
+ * @returns {*}
+ */</span>
+utility.compareIP = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(A , B)</span>{</span>
+    <span class="hljs-keyword">if</span> (!A || !B)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">var</span> resultB = B.split(<span class="hljs-string">"."</span>);
+    <span class="hljs-keyword">var</span> resultA = A.split(<span class="hljs-string">"."</span>);
+
+    <span class="hljs-keyword">if</span> (!resultA || !resultB)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt;<span class="hljs-number">4</span> ; i++){
+        ret = (<span class="hljs-built_in">parseInt</span>(resultB[i]) - <span class="hljs-built_in">parseInt</span>(resultA[i]));
+        <span class="hljs-keyword">if</span> (ret != <span class="hljs-number">0</span>){
+
+            <span class="hljs-keyword">if</span> (ret &gt; <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">return</span>(<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">else</span>
+                <span class="hljs-keyword">return</span>(-<span class="hljs-number">1</span>);
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</pre></div></div>
             
         </li>
         
         
-        <li id="section-129">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <blockquote>
 <p>Exports</p>
