@@ -24,15 +24,45 @@
         "prim":  "natural",
         "desc": "Number of times"
     },
+	"subnet":{
+		"name" : "subnet",
+		"prim":  "ip",
+		"desc": "pippo",
+		"ip4":{
+			"name" : "ip4",
+			"prim":  "ip",
+			"desc": "pippo"
+		},
+		"netmask":{
+			"name" : "netmask",
+			"prim":  "string",
+			"desc": "pippo"
+		}
+	},
+	"aggregate":{
+		"name" : "aggregate",
+		"prim":  "ip",
+		"desc": "pippo",
+		"ip4":{
+			"name" : "ip4",
+			"prim":  "ip",
+			"desc": "pippo"
+		}
+	},
     "source": {
         "name": "source",
         "prim":  "IP",
         "desc": "Source or initiator of network traffic; active meter",
         "ip":{
             "name": "IPv4 source address",
-            "prim":  "ip",
+            "prim":  "IP",
             "desc": "Source or initiator of network traffic; active meter IPv4"
         },
+	 "ip4":{
+     		"name": "IPv4 source address",
+     		"prim":  "IP",
+     		"desc": "Source or initiator of network traffic; active meter IPv4"
+ 	},
         "ip6":{
             "name": "IPv6 source address",
             "prim":  "ip6",
@@ -43,9 +73,14 @@
         "name": "destination",
         "prim":  "IP",
         "desc": "Destination or responder of network traffic; active reflector"
-        ,"ip":{
+        ,"ip4":{
             "name": "IPv4 destination address",
-            "prim":  "ip",
+            "prim":  "IP",
+            "desc": "Destination or responder of network traffic; active reflector IPv4"
+        }
+        ,"ip4":{
+            "name": "IPv4 destination address",
+            "prim":  "IP",
             "desc": "Destination or responder of network traffic; active reflector IPv4"
         }
         ,"ip6":{
@@ -192,6 +227,33 @@
             "name": "ip",
             "prim":  "real",
             "desc": "Connectivity at IP layer"
+        }
+		,"tcp": {
+            "name": "ip",
+            "prim":  "real",
+            "desc": "Connectivity delay at TCP layer"
+                ,"oneway": {
+                    "name": "oneway",
+                    "prim":  "real",
+                    "desc": "Delay or connectivity from source to destination"
+                }
+                ,"twoway": {
+                "min": {
+                    "name": "min",
+                    "prim": "real",
+                    "desc": "Minimum observed delay in TCP connectivity from source to destination and back"
+                },
+                "max": {
+                    "name": "max",
+                    "prim": "real",
+                    "desc": "Maximum observed delay in TCP connectivity from source to destination and back"
+                },
+                "mean": {
+                    "name": "mean",
+                    "prim": "real",
+                    "desc": "Mean observed delay in TCP connectivity from source to destination and back"
+                }
+            }
         }
         ,"asn": {
             "name": "asn",
