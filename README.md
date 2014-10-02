@@ -83,3 +83,7 @@ Please refer to the Examples directory for a working mPlane supervisor and pinge
 #Documentation
 
 Please refer to the API reference [mPlane nodejs API](http://finvernizzi.github.io/mplane/)
+
+#Release Notes
+
+You can find release notes [here](https://github.com/finvernizzi/mplane/blob/workInProgress/release_notes.md)
