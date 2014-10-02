@@ -1544,9 +1544,6 @@ Statement.prototype.to_dict = function(){
         ret[KEY_WHEN] = this._when.__string__; // Just put the String, not all the internal rapresentation
     }
     // Internally resultColumns and resultvalues are stored in a single structure
-    console.log("---------------");
-    console.log("--- to_dict ---");
-    console.log(self);
 
     //_resultvalues: { 'delay.twoway': [], 'hops.ip': [] },
     if ("_resultvalues" in this){
@@ -1562,7 +1559,6 @@ Statement.prototype.to_dict = function(){
                 if (!ret.resultvalues[row])
                     ret.resultvalues[row] = [];
                 ret.resultvalues[row].push(self._resultvalues[result][row]);
-                console.log(result + ":"+self._resultvalues[result][row]);
             }
         };
     }
@@ -1577,9 +1573,6 @@ Statement.prototype.to_dict = function(){
            val = Constraints.unParse_constraint(self.get_parameter_constraints(param));
         ret[KEY_PARAMETERS][param] = val;
     });
-    console.log();
-    console.log(ret);
-    console.log("--- to_dict ---");
     return JSON.stringify(ret);
 }
 
@@ -2036,11 +2029,12 @@ from_dict = function(dict){
     // Results
     if ("results" in dict){
         dict.results.forEach(function(resColumn , index){
+            // Adds the new result column
             retObj.add_result_column(resColumn);
-            if (dict.resultvalues && dict.resultvalues[index]){
-                for (var val=0;val<dict.resultvalues[index].length;val++){
-                    if (dict.resultvalues[index][val])
-                        retObj.set_result_column_value(resColumn , dict.resultvalues[index][val])
+            if (dict.resultvalues){
+                for (var row=0; row < dict.resultvalues.length; row++){
+                    //if (dict.resultvalues[row][index])
+                     retObj.set_result_column_value(resColumn , dict.resultvalues[row][index] || "")
                 }
             }
         });
