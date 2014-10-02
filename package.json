@@ -4,7 +4,6 @@
   "description": "mPlane nodeJS implementation",
   "main": "mplane.js",
   "directories": {
-    "doc": "docs",
     "examples": "Examples"
   },
   "dependencies": {
@@ -16,7 +15,6 @@
         "util": "~0.10.1"
   },
   "scripts": {
-    "test": "node ./test/test.js"
   },
  "repository" : { 
      "type" : "git",
