@@ -1,0 +1,3678 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>mplane.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>mplane.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>(c) 2013-2014 mPlane Consortium (<a href="http://www.ict-mplane.eu">http://www.ict-mplane.eu</a>)
+          Author: Fabrizio Invernizzi <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x66;&#97;&#98;&#114;&#105;&#122;&#x69;&#x6f;&#x2e;&#105;&#x6e;&#x76;&#x65;&#x72;&#110;&#105;&#122;&#122;&#105;&#64;&#116;&#101;&#x6c;&#101;&#x63;&#x6f;&#109;&#105;&#x74;&#x61;&#108;&#105;&#97;&#x2e;&#x69;&#x74;">&#x66;&#97;&#98;&#114;&#105;&#122;&#x69;&#x6f;&#x2e;&#105;&#x6e;&#x76;&#x65;&#x72;&#110;&#105;&#122;&#122;&#105;&#64;&#116;&#101;&#x6c;&#101;&#x63;&#x6f;&#109;&#105;&#x74;&#x61;&#108;&#105;&#97;&#x2e;&#x69;&#x74;</a></p>
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+<ol>
+<li>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.</li>
+<li>All advertising materials mentioning features or use of this software
+must display the following acknowledgement:
+This product includes software developed by the <organization>.</li>
+<li>Neither the name of the <organization> nor the
+names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.</li>
+</ol>
+<p>THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ‘’AS IS’’ AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h1 id="mplane-nodejs-reference-library">mPlane nodeJS reference library</h1>
+<p>This is the mPlane nodejs library. 
+The architecture and software structure is freely inspired by <a href="http://fp7mplane.github.io/protocol-ri/">mPlane reference implementation</a> written in python by Brian Trammell <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x62;&#114;&#105;&#x61;&#110;&#64;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#x65;&#108;&#108;&#46;&#99;&#104;">&#x62;&#114;&#105;&#x61;&#110;&#64;&#x74;&#x72;&#x61;&#x6d;&#x6d;&#x65;&#108;&#108;&#46;&#99;&#104;</a>.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="external-libraries">External libraries</h2>
+<blockquote>
+<p>These are support libraries</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">"lodash"</span>),
+    util = <span class="hljs-built_in">require</span>(<span class="hljs-string">'util'</span>),
+    CronJob = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cron'</span>).CronJob,
+    fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>),
+    url = <span class="hljs-built_in">require</span>(<span class="hljs-string">"url"</span>),
+    md5 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'MD5'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>//////////////////////////////////////////////////////////////////////////</p>
+<h1 id="constants">Constants</h1>
+<p>//////////////////////////////////////////////////////////////////////////</p>
+<blockquote>
+<p>Duration regular expression</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> _dur_re = <span class="hljs-regexp">/((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?/</span>;
+<span class="hljs-keyword">var</span> _dur_seclabel = {
+    <span class="hljs-string">'d'</span> : <span class="hljs-number">86400</span>,
+    <span class="hljs-string">'h'</span> : <span class="hljs-number">3600</span>,
+    <span class="hljs-string">'m'</span> : <span class="hljs-number">60</span>,
+    <span class="hljs-string">'s'</span> : <span class="hljs-number">1</span>
+};
+    
+<span class="hljs-keyword">var</span> ELEMENT_SEP = <span class="hljs-string">"."</span>;
+<span class="hljs-keyword">var</span> RANGE_SEP = <span class="hljs-string">" ... "</span>;
+<span class="hljs-keyword">var</span> DURATION_SEP = <span class="hljs-string">" + "</span>;
+<span class="hljs-keyword">var</span> PERIOD_SEP = <span class="hljs-string">" / "</span>;
+<span class="hljs-keyword">var</span> SET_SEP = <span class="hljs-string">","</span>;
+
+
+<span class="hljs-keyword">var</span> KIND_CAPABILITY = <span class="hljs-string">"capability"</span>
+<span class="hljs-keyword">var</span> KIND_SPECIFICATION = <span class="hljs-string">"specification"</span>
+<span class="hljs-keyword">var</span> KIND_RESULT = <span class="hljs-string">"result"</span>
+<span class="hljs-keyword">var</span> KIND_RECEIPT = <span class="hljs-string">"receipt"</span>
+<span class="hljs-keyword">var</span> KIND_REDEMPTION = <span class="hljs-string">"redemption"</span>
+<span class="hljs-keyword">var</span> KIND_INDIRECTION = <span class="hljs-string">"indirection"</span>
+<span class="hljs-keyword">var</span> KIND_WITHDRAWAL = <span class="hljs-string">"withdrawal"</span>
+<span class="hljs-keyword">var</span> KIND_INTERRUPT = <span class="hljs-string">"interrupt"</span>
+<span class="hljs-keyword">var</span> KIND_EXCEPTION = <span class="hljs-string">"exception"</span>
+
+
+<span class="hljs-keyword">var</span> _dow_label = [<span class="hljs-string">'mo'</span>, <span class="hljs-string">'tu'</span>, <span class="hljs-string">'we'</span>, <span class="hljs-string">'th'</span>, <span class="hljs-string">'fr'</span>, <span class="hljs-string">'sa'</span>, <span class="hljs-string">'su'</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>CHECKME: non sono sicuro di cosa volesse fare con questo
+var _dow_number = _dow_label.length();</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> __DEFAULT_REGISTRY_FILE = <span class="hljs-string">"./registry.json"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="time-class">time class</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> time = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>String rapresentation of past, now, future</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.TIME_PAST      = <span class="hljs-string">"past"</span>;
+time.TIME_NOW       = <span class="hljs-string">"now"</span>;
+time.TIME_FUTURE    = <span class="hljs-string">"future"</span>
+time.TIME_INVALID    = <span class="hljs-string">"invalid"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2 id="time_past">time_past</h2>
+<blockquote>
+<p>is strVal a TIME_PAST vlaue?</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.time_past = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(strVal)</span>{</span>
+    <span class="hljs-keyword">return</span> (strVal === time.TIME_PAST);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h2 id="time_now">time_now</h2>
+<blockquote>
+<p>is strVal a TIME_NOW vlaue?</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.time_now = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(strVal)</span>{</span>
+     <span class="hljs-keyword">return</span> (strVal === time.TIME_NOW);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2 id="time_future">time_future</h2>
+<blockquote>
+<p>is strVal a TIME_FUTURE vlaue?</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.time_future = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(strVal)</span>{</span>
+   <span class="hljs-keyword">return</span> (strVal === time.TIME_FUTURE);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h2 id="parse_time-parsetime-">parse_time (parseTime)</h2>
+<p>Given a valid datetime string or PAST/FUTURE/NOW string return a new Date obj or PAST/FUTURE/NOW
+Static function. CHECKME: verificare quali funzioni serve lasciare statiche</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.parse_time = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valStr)</span>{</span>
+    <span class="hljs-keyword">if</span> (!valStr)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">switch</span>(valStr){
+        <span class="hljs-keyword">case</span> time.TIME_PAST:
+            <span class="hljs-keyword">return</span> time.TIME_PAST;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> time.TIME_FUTURE:
+            <span class="hljs-keyword">return</span> time.TIME_FUTURE;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> time.TIME_NOW:
+            <span class="hljs-keyword">return</span> time.TIME_NOW;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">try</span>{
+                <span class="hljs-keyword">return</span>  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(valStr);
+            }<span class="hljs-keyword">catch</span>(e){
+                <span class="hljs-keyword">return</span> time.TIME_INVALID;
+            }
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h2 id="unparse_time-unparsetime-">unparse_time (unParseTime)</h2>
+<p>Given a valid datetime or PAST/FUTURE/NOW string return a string representation
+Static function</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.unparse_time = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valts)</span>{</span>
+    <span class="hljs-keyword">if</span> (!valts)
+        <span class="hljs-keyword">return</span> time.TIME_INVALID;
+    <span class="hljs-keyword">if</span> (valts <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>)
+             <span class="hljs-keyword">return</span>  valts.toString();
+   <span class="hljs-keyword">switch</span>(valStr){
+        <span class="hljs-keyword">case</span> time.TIME_PAST:
+            <span class="hljs-keyword">return</span> time.TIME_PAST;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> time.TIME_FUTURE:
+            <span class="hljs-keyword">return</span> time.TIME_FUTURE;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> time.TIME_NOW:
+            <span class="hljs-keyword">return</span> time.TIME_NOW;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> time.TIME_INVALID;
+    } 
+    
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2 id="duration-functions">Duration functions</h2>
+<h3 id="parse_dur-parsedur-">parse_dur (parseDur)</h3>
+<p>Converts a string representing a duration in seconds</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.parse_dur = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valstr)</span>{</span>
+    <span class="hljs-keyword">if</span> (!valstr)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">var</span> valsec = <span class="hljs-number">0</span>;
+    m = _dur_re.exec(valstr);
+    <span class="hljs-keyword">var</span> durSecLabels = _.keys(_dur_seclabel);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>The returned obj has the input in position 0 </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">1</span> ; i&lt;<span class="hljs-number">5</span>; i++){
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isNaN</span>(m[<span class="hljs-number">2</span>*i])){
+            valsec += (<span class="hljs-built_in">parseInt</span>(_dur_seclabel[durSecLabels[i-<span class="hljs-number">1</span>]]) * <span class="hljs-built_in">parseInt</span>(m[<span class="hljs-number">2</span>*i]));
+        }
+    }
+    <span class="hljs-keyword">return</span> valsec;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h3 id="unparse_dur-unparsedur-">unparse_dur (unParseDur)</h3>
+<p>Converts a string representing a duration in seconds</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.unparse_dur = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valtd)</span>{</span>
+    <span class="hljs-keyword">var</span> valstr = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">var</span> durSecLabels = _.keys(_dur_seclabel);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>The returned obj has the input in position 0 </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">1</span> ; i&lt;<span class="hljs-number">5</span>; i++){
+        <span class="hljs-keyword">if</span> (valtd &gt;= _dur_seclabel[durSecLabels[i-<span class="hljs-number">1</span>]]){
+            valunit = <span class="hljs-built_in">parseInt</span>(valtd / _dur_seclabel[durSecLabels[i-<span class="hljs-number">1</span>]]);
+            valstr += valunit.toString() + durSecLabels[i-<span class="hljs-number">1</span>];
+            valtd -= valunit * _dur_seclabel[durSecLabels[i-<span class="hljs-number">1</span>]]
+        }
+    }
+    <span class="hljs-keyword">if</span> (!valstr.length)
+        valstr = <span class="hljs-string">"0s"</span>;
+    <span class="hljs-keyword">return</span> valstr;
+}
+time.unParseDur = time.parse_dur;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>This is not defined in Javascript</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.total_seconds = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valInt)</span>{</span>
+    <span class="hljs-keyword">return</span> valInt;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h2 id="areequal">areEqual</h2>
+<blockquote>
+<p>Given 2 date (in string or Date format) compares them and return true if they are equal</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>time.areEqual = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(date_A , date_B)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Are special case string?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> ((_.isString(date_A)) &amp;&amp; ((date_A == time.TIME_FUTURE) ||  (date_A == time.TIME_NOW) || (date_A == time.TIME_PAST))  ){
+        <span class="hljs-keyword">return</span> (date_A === date_B);
+    }
+    
+    <span class="hljs-keyword">var</span> dA , dB;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>We convert all to Date</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!_.isDate(date_A))
+        dA = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(date_A);
+    <span class="hljs-keyword">else</span>    
+        dA = date_A;
+    <span class="hljs-keyword">if</span> (!_.isDate(date_B))
+        dB = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(date_B);
+    <span class="hljs-keyword">else</span>    
+        dB = date_B;
+    <span class="hljs-keyword">return</span> (dB.getTime() === dA.getTime());
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="when-class">when class</h1>
+<blockquote>
+<p>Defines the temporal scopes for capabilities, results, or 
+single measurement specifications.
+a and b could be strings (past,now,future) or Date obj</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> when = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valstr , a , b , d , p)</span>{</span>
+    <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_a"</span> , a || <span class="hljs-literal">null</span>);
+    <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_b"</span> , b || <span class="hljs-literal">null</span>);
+   
+    <span class="hljs-keyword">this</span>._d = d || <span class="hljs-literal">null</span>; <span class="hljs-comment">// duration</span>
+    <span class="hljs-keyword">this</span>._p = p || <span class="hljs-literal">null</span>; <span class="hljs-comment">// period</span>
+
+    <span class="hljs-keyword">if</span> (valstr)
+        <span class="hljs-keyword">this</span>.parse(valstr)
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Set one of the to date in when depending on the type of value we pass</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.setDate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(whichDate , value)</span>{</span>
+    <span class="hljs-keyword">if</span> (!value){
+        <span class="hljs-keyword">this</span>[whichDate] = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">return</span>;
+    }
+     <span class="hljs-keyword">if</span> (value &amp;&amp; (value === time.TIME_PAST || value === time.TIME_NOW || value === time.TIME_FUTURE))
+        <span class="hljs-keyword">this</span>[whichDate] = value ;
+    <span class="hljs-keyword">else</span>
+        (_.isDate(value))?<span class="hljs-keyword">this</span>[whichDate]=value:<span class="hljs-keyword">this</span>[whichDate] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h2 id="parse">parse</h2>
+<p>From a valid when string , set the details in the whne instance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.parse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valstr)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>First separate the period from the value and parse it</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> valsplit = valstr.split(PERIOD_SEP);
+        <span class="hljs-keyword">if</span> (valsplit.length &gt; <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">this</span>._p = time.parse_dur(valsplit[<span class="hljs-number">1</span>]);
+        }<span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">this</span>.p = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>then try to split duration or range</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        valsplit = valsplit[<span class="hljs-number">0</span>].split(DURATION_SEP); <span class="hljs-comment">//+</span>
+       
+        <span class="hljs-keyword">if</span> (valsplit.length &gt; <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">this</span>._d = time.parse_dur(valsplit[<span class="hljs-number">1</span>]);
+            <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_a"</span> , valsplit[<span class="hljs-number">0</span>]);
+            <span class="hljs-keyword">this</span>._b = <span class="hljs-literal">null</span>;
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">this</span>._d = <span class="hljs-literal">null</span>
+            valsplit = valsplit[<span class="hljs-number">0</span>].split(RANGE_SEP);
+             <span class="hljs-keyword">if</span> (valsplit.length &gt; <span class="hljs-number">1</span>){
+                 <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_a"</span> , time.parse_time(valsplit[<span class="hljs-number">0</span>]));
+                 <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_b"</span> , time.parse_time(valsplit[<span class="hljs-number">1</span>]));
+            }
+            <span class="hljs-keyword">else</span>{
+                <span class="hljs-keyword">this</span>.setDate(<span class="hljs-string">"_a"</span> , time.parse_time(valsplit[<span class="hljs-number">0</span>]));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>this._a = time.parse_time(valsplit[0])</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>._b = <span class="hljs-literal">null</span>;
+            }
+        }   
+}
+
+when.prototype.is_immediate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._a === time.TIME_NOW;
+}
+when.prototype.is_forever = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._a === time.TIME_FUTURE;
+}
+when.prototype.is_past = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+   <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>._a === time.TIME_PAST) &amp;&amp; (<span class="hljs-keyword">this</span>._b === time.TIME_NOW));
+}
+when.prototype.is_future = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+   <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>._a === time.TIME_NOW) &amp;&amp; (<span class="hljs-keyword">this</span>._b === time.TIME_FUTURE));
+}
+when.prototype.is_infinite = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+   <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>._a === time.TIME_PAST) &amp;&amp; (<span class="hljs-keyword">this</span>._b === time.TIME_FUTURE));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <blockquote>
+<p>Return True if this scope defines a definite time 
+or a definite time interval.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.is_definite = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._b)
+        <span class="hljs-keyword">return</span> _.isNumber(<span class="hljs-keyword">this</span>._d);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>._a <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>) &amp;&amp; (<span class="hljs-keyword">this</span>._b <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <blockquote>
+<p>Return True if this temporal scope refers to a
+singleton measurement. Used in scheduling an enclosing
+Specification; has no meaning for Capabilities 
+or Results.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.is_singleton = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>._a &amp;&amp; !<span class="hljs-keyword">this</span>._b &amp;&amp; !<span class="hljs-keyword">this</span>._d);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <h2 id="_datetimes">_datetimes</h2>
+<blockquote>
+<p>Based on current state of when, return a Json with start and end (as Date obj)</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype._datetimes = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tzero)</span>{</span>
+    <span class="hljs-keyword">var</span> start=<span class="hljs-literal">null</span>,end=<span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (!tzero)
+        tzero = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+    <span class="hljs-keyword">else</span>    
+        (_.isDate(tzero))?tzero=tzero:tzero = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(tzero);
+    <span class="hljs-keyword">switch</span>(<span class="hljs-keyword">this</span>._a){
+        <span class="hljs-keyword">case</span> time.TIME_NOW:
+            start = tzero;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> time.TIME_PAST:
+            start = <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            start = <span class="hljs-keyword">this</span>._a;
+    }
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>._b){
+        <span class="hljs-keyword">case</span> (time.TIME_FUTURE):
+            end = <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> (<span class="hljs-literal">null</span>):
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._d){
+                end = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>((start.getTime() + <span class="hljs-keyword">this</span>._d*<span class="hljs-number">1000</span>));<span class="hljs-comment">//_d is in seonds, getTime in millisec</span>
+            }
+            <span class="hljs-keyword">else</span>
+                end = start;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            end = <span class="hljs-keyword">this</span>._b;
+    }
+    <span class="hljs-keyword">return</span> { <span class="hljs-string">"start"</span>:start , 
+             <span class="hljs-string">"end"</span> : end};
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <h2 id="duration">duration</h2>
+<blockquote>
+<p>Return the duration in seconds of this temporal scope.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.duration = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tzero)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._d)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._d;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._b === time.TIME_FUTURE)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._b)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">var</span> se = <span class="hljs-keyword">this</span>._datetimes(tzero);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>return (se[1].getTime() - se[0].getTime());</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>       <span class="hljs-keyword">return</span> (se.end.getTime() - se.start.getTime());
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <h2 id="timer_delays">timer_delays</h2>
+<p>Returns a tuple with delays for timers to signal the start and end of
+ a temporal scope, given a specified time zero, which defaults to the
+ current system time. </p>
+<p>The start delay is defined to be zero if the scheduled start time has
+already passed or the temporal scope is immediate (i.e., starts now).
+The start delay is None if the temporal scope has expired (that is,
+the current time is after the calculated end time)</p>
+<p>The end delay is defined to be None if the temporal scope has already
+expired, or if the temporal scope has no scheduled end (is infinite or
+a singleton). End delays are calculated to give priority to duration 
+when a temporal scope is expressed in terms of duration, and to 
+ prioritize end time otherwise.</p>
+<p> Used in scheduling an enclosing Specification for execution. 
+ Has no meaning for Capabilities or Results.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.timer_delays = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tzero)</span>{</span>
+    <span class="hljs-keyword">var</span> se=<span class="hljs-literal">null</span>,sd=<span class="hljs-literal">null</span>,ed=<span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (!tzero) 
+        tzero = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+    <span class="hljs-keyword">var</span> se = <span class="hljs-keyword">this</span>._datetimes(tzero);
+
+    sd = time.total_seconds(se.start - tzero);
+    <span class="hljs-keyword">if</span> (sd &lt; <span class="hljs-number">0</span>)
+        sd = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._b &amp;&amp; (!time.time_future(<span class="hljs-keyword">this</span>._b))){
+        ed = time.total_seconds(se.end - tzero);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._d){
+            ed = (sd + time.total_seconds(<span class="hljs-keyword">this</span>._d)*<span class="hljs-number">1000</span>); <span class="hljs-comment">// everything in millisec</span>
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>detect expired temporal scope</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (ed &amp;&amp; ed&lt;<span class="hljs-number">0</span>){
+        sd = <span class="hljs-literal">null</span>;
+        ed = <span class="hljs-literal">null</span>;
+    }
+    
+    <span class="hljs-keyword">return</span> {
+        sd: sd/<span class="hljs-number">1000</span>,
+        ed: ed/<span class="hljs-number">1000</span>
+    };
+}
+
+
+when.prototype.period = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._p;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <h2 id="in_scope">in_scope</h2>
+<blockquote>
+<p>Return True if time t falls within this scope.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.in_scope = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(t, tzero)</span>{</span>
+        <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>.sort_scope(t, tzero) == <span class="hljs-number">0</span>));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <h1 id="sort_scope">sort_scope</h1>
+<blockquote>
+<p>Return &lt; 0 if time t falls before this scope,
+0 if time t falls within the scope, 
+or &gt; 0 if time t falls after this scope. </p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.sort_scope = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(t, tzero)</span>{</span>
+    <span class="hljs-keyword">if</span> (t === time.TIME_NOW){
+        <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>._a === time.TIME_NOW) || (<span class="hljs-keyword">this</span>._b === time.TIME_NOW))
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">if</span> (!tzero)
+                tzero = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+             t = tzero;
+        }   
+    }
+
+    <span class="hljs-keyword">var</span> se = <span class="hljs-keyword">this</span>._datetimes(tzero);
+    <span class="hljs-keyword">if</span> (se.start &amp;&amp; (t &lt; se.start))
+        <span class="hljs-keyword">return</span> time.total_seconds(t - se.start);
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">if</span> (se.end &amp;&amp; (t &gt; se.end))
+            <span class="hljs-keyword">return</span> time.total_seconds(t - se.end);
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    } 
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <h2 id="follows">follows</h2>
+<blockquote>
+<p>Return True if this scope follows (is contained by) another.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>when.prototype.follows = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(s,tzero)</span>{</span>
+    <span class="hljs-keyword">if</span> ((s.in_scope(<span class="hljs-keyword">this</span>._a, tzero)) || (s.in_scope(<span class="hljs-keyword">this</span>._b, tzero)))
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+}       
+
+<span class="hljs-keyword">var</span> when_infinite = <span class="hljs-keyword">new</span> when(<span class="hljs-literal">null</span> , time.TIME_PAST, time.TIME_FUTURE);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="schedule-class">schedule class</h1>
+<blockquote>
+<p>Defines a schedule for repeated operations based on crontab-like
+sets of months, days, days of weeks, hours, minutes, and seconds.
+Used to specify repetitions of single measurements in a Specification.
+It is a wrap-aroud of node cron library (<a href="https://github.com/ncb000gt/node-cron">https://github.com/ncb000gt/node-cron</a>)</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> Scheduler = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>CHECKME: verificare cosa fare e come per eliminare dal array i job scaduti</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.jobs = []; <span class="hljs-comment">// Array of all scheduled jobs</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <h2 id="addjob">addJob</h2>
+<blockquote>
+<p>Schedules a new job
+—- params
+         cronTime: [REQUIRED] - The time to fire off your job. This can be in the form of cron syntax or a JS Date object.
+         onTick: [REQUIRED] - The function to fire at the specified time.
+         onComplete:  [OPTIONAL] - A function that will fire when the job is complete, when it is stopped.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Scheduler.prototype.addJob = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(cronTime, onTick, onComplete)</span>{</span>
+    <span class="hljs-keyword">var</span> job = <span class="hljs-keyword">new</span> CronJob(cronTime, onTick, onComplete,<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">this</span>.jobs.push(job);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="primitive-types">Primitive Types</h1>
+<blockquote>
+<p>Represents a primitive mPlane data type. Primitive types define
+   textual and native representations for data elements, and convert
+  between the two.</p>
+</blockquote>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <blockquote>
+<p>   In general, client code will not need to interact with Primitives;
+   conversion between strings and values is handled automatically by
+   the Statement and Notification classes.
+Here we have a single class with a type and single functions that behave differently for dirent primitives
+(More procedural, less object oriented)
+////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h2 id="constructor">constructor</h2>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Primitive = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(type)</span>{</span>
+    <span class="hljs-keyword">this</span>.setType(type);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p><strong>The primitive type is the key of each type</strong>
+If some specific constrains function os defined, it overloads the default one</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> PRIMITIVES = {
+     <span class="hljs-string">"UNDEF"</span>:{
+        label: <span class="hljs-string">"undef"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;},
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> value; },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value}
+     },
+    <span class="hljs-string">"STRING"</span>:{
+        label: <span class="hljs-string">"string"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> _.isString(value); },
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> value; },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value},
+        constraints : {
+            <span class="hljs-string">"range"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">this</span>._param.valA &lt;= value) &amp;&amp; (<span class="hljs-keyword">this</span>._param.valB &gt;= value));
+                }
+            },
+            <span class="hljs-string">"list"</span> : {
+                 met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
+                }
+            }
+        }
+     },
+    <span class="hljs-string">"BOOL"</span>:{
+        label: <span class="hljs-string">"bool"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> _.isBoolean(value);},
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">if</span> (value)
+                        <span class="hljs-keyword">return</span> <span class="hljs-string">'true'</span>;
+                    <span class="hljs-keyword">return</span> <span class="hljs-string">'false'</span>;
+                },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                <span class="hljs-keyword">if</span> (value.toLowerCase() === <span class="hljs-string">"true"</span>)
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+     },
+    <span class="hljs-string">"NATURAL"</span>:{
+        label: <span class="hljs-string">"natural"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> utility.isInt(value);},
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value.toString();},
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(value);},
+        constraints : {
+            <span class="hljs-string">"range"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> ((<span class="hljs-built_in">parseInt</span>(value) &gt;= <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>._param.valA)) &amp;&amp; (<span class="hljs-built_in">parseInt</span>(value) &lt;= <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>._param.valB)));
+                }
+            },
+            <span class="hljs-string">"list"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
+                }
+            },
+            <span class="hljs-string">"singleton"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (value === <span class="hljs-keyword">this</span>._param);
+                }
+            }
+        }
+     },
+    <span class="hljs-string">"REAL"</span>:{
+        label: <span class="hljs-string">"real"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> utility.isReal(value); },
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value.toString();   },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-built_in">parseFloat</span>(value); }
+     },
+    <span class="hljs-string">"IP"</span>:{
+        label: <span class="hljs-string">"ip"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> (<span class="hljs-regexp">/^(\d{1,3}\.){3,3}\d{1,3}$/</span>.test(value))},
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> value; },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value},
+        constraints : {
+            <span class="hljs-string">"range"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                   <span class="hljs-keyword">return</span> ((utility.compareIP(<span class="hljs-keyword">this</span>._param.valA , value) &gt;= <span class="hljs-number">0</span>) &amp;&amp; (utility.compareIP(<span class="hljs-keyword">this</span>._param.valB , value) &lt;= <span class="hljs-number">0</span>));
+                }
+            },
+            <span class="hljs-string">"list"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (_.contains(<span class="hljs-keyword">this</span>._param, value));
+                }
+            },
+            <span class="hljs-string">"singleton"</span> : {
+                met_by : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+                    <span class="hljs-keyword">return</span> (value === <span class="hljs-keyword">this</span>._param);
+                }
+            }
+        }
+     },
+    <span class="hljs-string">"IP6"</span>:{
+        label: <span class="hljs-string">"ip6"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> (<span class="hljs-regexp">/^[A-Fa-f0-9:]+$/</span>.test(value)) },
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value;},
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value}
+     },
+    <span class="hljs-string">"URL"</span>:{
+        label: <span class="hljs-string">"url"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> url.parse(value); },
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> value; },
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> value}
+     },
+    <span class="hljs-string">"TIME"</span>:{
+        label: <span class="hljs-string">"time"</span>,
+        isValid: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> ((!_.isNaN(<span class="hljs-built_in">Date</span>.parse(value))) || ( (value == time.TIME_PAST ) || (value == time.TIME_NOW ) || (value == time.TIME_FUTURE ) )); },
+        unParse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span> <span class="hljs-keyword">return</span> time.parse_time(value);},
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span><span class="hljs-keyword">return</span> time.parse_time(value); }
+     }
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <h1 id="we-expose-these-const-in-order-to-simpify-coding">We expose these const in order to simpify coding</h1>
+<p>They can be used to refere to a specific primitive, instead of usgin the internal string</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> pk = _.keys(PRIMITIVES);
+
+Primitive.UNDEF = pk[<span class="hljs-number">0</span>];
+Primitive.STRING = pk[<span class="hljs-number">1</span>];
+Primitive.BOOL = pk[<span class="hljs-number">2</span>];
+Primitive.NATURAL = pk[<span class="hljs-number">3</span>];
+Primitive.REAL = pk[<span class="hljs-number">4</span>];
+Primitive.IP = pk[<span class="hljs-number">5</span>];
+Primitive.IP6 = pk[<span class="hljs-number">6</span>];
+Primitive.URL = pk[<span class="hljs-number">7</span>];
+Primitive.TIME = pk[<span class="hljs-number">8</span>];
+
+Primitive.VALUE_NONE = <span class="hljs-string">"*"</span>;
+
+Primitive.prototype.setType = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(type)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>Do we know about this type?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>   <span class="hljs-keyword">if</span> ((!type) || !(PRIMITIVES[type]))
+        <span class="hljs-keyword">this</span>.type = <span class="hljs-keyword">this</span>.UNDEF;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">this</span>.type = type; <span class="hljs-comment">// the type of primitive the istance is.</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <h2 id="knownprimitive">knownPrimitive</h2>
+<p>is prim a kwnown primitive?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Primitive.knownPrimitive = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(prim)</span>{</span>
+    <span class="hljs-keyword">return</span> (_.indexOf(pk, prim.toUpperCase()) != -<span class="hljs-number">1</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <h2 id="parse">parse</h2>
+<blockquote>
+<p>Convert a string to a value; default implementation
+       returns the string directly, returning None for the
+       special string “*”, which represents “all values” in 
+       mPlane.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Primitive.prototype.parse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(sval)</span>{</span>
+    <span class="hljs-keyword">if</span> (sval === Primitive.VALUE_NONE)
+        <span class="hljs-keyword">return</span> Primitive.VALUE_NONE;
+     <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>.type != Primitive.BOOL ) &amp;&amp; (!sval)){
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">return</span> (PRIMITIVES[<span class="hljs-keyword">this</span>.type].parse(sval)) ;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <h2 id="unparse">unparse</h2>
+<blockquote>
+<p>Convert a value tp a string; 
+IP address manipulation freely inspired by <a href="https://github.com/indutny/node-ip/blob/master/lib/ip.js">https://github.com/indutny/node-ip/blob/master/lib/ip.js</a></p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Primitive.prototype.unparse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
+    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>.type != Primitive.BOOL ) &amp;&amp; (!val)){
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">return</span> (PRIMITIVES[<span class="hljs-keyword">this</span>.type].unParse(val)) ;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <h2 id="isvalid">isValid</h2>
+<p>This is not in the reference implementation
+Checks if a value is valid for this type of primitive or not
+Call the primitive isValid defined in the PRIMITIVES obj</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Primitive.prototype.isValid = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
+    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>.type != Primitive.BOOL ) &amp;&amp; (!val)){
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">return</span> (PRIMITIVES[<span class="hljs-keyword">this</span>.type].isValid(val)) ;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <h1 id="element">Element</h1>
+<blockquote>
+<p>   An Element represents a name for a particular type of data with 
+   a specific semantic meaning; it is analogous to an IPFIX Information 
+   Element, or a named column in a relational database.</p>
+<p>   An Element has a Name by which it can be compared to other Elements,
+   and a primitive type, which it uses to convert values to and from
+   strings.</p>
+<p>   The mPlane reference implementation includes a default registry of
+   elements; use initialize_registry() to use these.
+An element can be create directly from a definition of the registry, passing the name of the registry element or from a json config</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Element = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>If config is not defined, set default Values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!config || _.isUndefined(config)){
+        config = {};
+    }
+    <span class="hljs-keyword">if</span> (_.isObject(config)){
+        <span class="hljs-keyword">this</span>._name = config.name || config._name || <span class="hljs-string">"Undef"</span>;
+        (config.prim)?<span class="hljs-keyword">this</span>._prim = config.prim.toUpperCase():<span class="hljs-keyword">this</span>._prim = Primitive.UNDEF;
+        (config._prim)?<span class="hljs-keyword">this</span>._prim = config._prim.toUpperCase():<span class="hljs-keyword">this</span>._prim = Primitive.UNDEF;
+        <span class="hljs-keyword">this</span>._desc = config.desc || config._desc || <span class="hljs-string">""</span>;
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">var</span> el = Element.getFromName(config);
+        <span class="hljs-keyword">this</span>._name = el.name || <span class="hljs-string">"Undef"</span>;
+        <span class="hljs-keyword">this</span>._prim = el.prim.toUpperCase() || Primitive.UNDEF;
+        <span class="hljs-keyword">this</span>._desc = el.desc || <span class="hljs-string">""</span>;  
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>In this implementation contrains are part of the Element class
+This json contains the constraints defined for a specific instance
+Each constraint is identified by a unique id (the key in the json details)
+so that we can remove/change. The uniqueID is a simple incremental,
+so the <strong>uniqueID</strong> is used internally as the “next unique id”, while the constrains details are in the details json,
+with the uniqueID as key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._constrains = { __uniqueID__ : <span class="hljs-number">0</span>,
+                        details : {}};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>If the configuration contains constrains, ADD THEM to the element!!!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (config._constrains){
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt;config._constrains. __uniqueID__ ; i++){
+            self.addConstraint(config._constrains.details[i]);
+        }
+    }
+}
+
+Element.prototype.getDescription = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._desc;
+}
+Element.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._name;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>Array containing the known elements</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>_element_registry = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>Initialize the registry from a json file
+It is a static method, so it could be called without instantiate an element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.initialize_registry = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(filename)</span>{</span>
+    <span class="hljs-keyword">var</span> fn = filename || __DEFAULT_REGISTRY_FILE,
+        registry = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">try</span> {
+        registry = fs.readFileSync(fn);
+        _element_registry = <span class="hljs-built_in">JSON</span>.parse(registry);
+    }
+    <span class="hljs-keyword">catch</span> (err) {
+        console.log(<span class="hljs-string">'There has been an error parsing the registry file.( '</span>+fn+<span class="hljs-string">')'</span>);
+        console.log(err);
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>Return an element entry from the registry from the name
+Static method, so it could be called without instantiate an element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.getFromName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name)</span>{</span>
+    <span class="hljs-keyword">var</span> names = name.split(<span class="hljs-string">"."</span>);
+    <span class="hljs-keyword">var</span> ret = _element_registry;
+    <span class="hljs-keyword">for</span> (el <span class="hljs-keyword">in</span> names){
+        <span class="hljs-keyword">if</span> (ret[names[el]])
+            ret = ret[names[el]];
+        <span class="hljs-keyword">else</span>    
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Undefined element in registry:"</span>+name);
+    }
+    <span class="hljs-keyword">return</span> ret;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <h2 id="parse">parse</h2>
+<blockquote>
+<p>Convert a string to a value for this Element; delegates to primitive.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.parse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(sval)</span>{</span>
+    <span class="hljs-keyword">this</span>._prim.parse(sval);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <h2 id="unparse">unparse</h2>
+<blockquote>
+<p>Convert a value to a string for this Element; delegates to primitive.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.unparse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
+    <span class="hljs-keyword">this</span>._prim.unparse(val);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <h2 id="compatible_with">compatible_with</h2>
+<blockquote>
+<pre><code>Determine based on naming rules <span class="hljs-keyword">if</span> <span class="hljs-keyword">this</span> element is compatible <span class="hljs-keyword">with</span>
+element rval; that is, <span class="hljs-keyword">if</span> transformation_to will <span class="hljs-keyword">return</span> a <span class="hljs-function"><span class="hljs-keyword">function</span>
+<span class="hljs-title">for</span> <span class="hljs-title">turning</span> <span class="hljs-title">a</span> <span class="hljs-title">value</span> <span class="hljs-title">of</span> <span class="hljs-title">this</span> <span class="hljs-title">element</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">other</span>. <span class="hljs-title">Compatibility</span> <span class="hljs-title">based</span>
+<span class="hljs-title">on</span> <span class="hljs-title">name</span> <span class="hljs-title">structure</span> <span class="hljs-title">is</span> <span class="hljs-title">a</span> <span class="hljs-title">future</span> <span class="hljs-title">feature</span>; <span class="hljs-title">this</span> <span class="hljs-title">method</span> <span class="hljs-title">currently</span> <span class="hljs-title">checks</span> <span class="hljs-title">for</span>
+<span class="hljs-title">name</span> <span class="hljs-title">equality</span> <span class="hljs-title">only</span>.</span>
+</code></pre></blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.compatible_with = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rval)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._name == rval;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <h2 id="transformation_to">transformation_to</h2>
+<blockquote>
+<pre><code>Returns a <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">which</span> <span class="hljs-title">will</span> <span class="hljs-title">transform</span> <span class="hljs-title">values</span> <span class="hljs-title">of</span> <span class="hljs-title">this</span> <span class="hljs-title">element</span>
+<span class="hljs-title">into</span> <span class="hljs-title">values</span> <span class="hljs-title">of</span> <span class="hljs-title">element</span> <span class="hljs-title">rval</span>; <span class="hljs-title">used</span> <span class="hljs-title">to</span> <span class="hljs-title">support</span> <span class="hljs-title">unit</span> <span class="hljs-title">conversions</span>.
+<span class="hljs-title">This</span> <span class="hljs-title">is</span> <span class="hljs-title">a</span> <span class="hljs-title">future</span> <span class="hljs-title">feature</span>, <span class="hljs-title">and</span> <span class="hljs-title">is</span> <span class="hljs-title">currently</span> <span class="hljs-title">a</span> <span class="hljs-title">no</span>-<span class="hljs-title">op</span>. 
+<span class="hljs-title">Only</span> <span class="hljs-title">valid</span> <span class="hljs-title">if</span> <span class="hljs-title">compatible_with</span> <span class="hljs-title">returns</span> <span class="hljs-title">True</span>.</span>
+</code></pre></blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.transformation_to = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rval)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rval)</span>{</span> <span class="hljs-keyword">return</span> rval };
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <h1 id="constraints">CONSTRAINTS</h1>
+<p>In this  implementation, constraints are part of the Element class
+A constraint is a JSON obj with a type and optional/required parameters (depending on the type of contraint)
+The consequence is that we use a procedural approach intead of a pure obj oriented one</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <h2 id="contraints-obj">contraints obj</h2>
+<p>Depends by the primitive and the type of constraints (es: integer range)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Constraints = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">this</span>._prim = Primitive.UNDEF; <span class="hljs-comment">// Default to UNDEF primitive type</span>
+    <span class="hljs-keyword">this</span>._name = <span class="hljs-string">"Constraint"</span>; 
+    <span class="hljs-keyword">this</span>._type = Constraints.UNDEF;
+    <span class="hljs-keyword">this</span>.met_by = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;}
+    <span class="hljs-keyword">this</span>.single_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span><span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;}
+    
+    
+    <span class="hljs-keyword">if</span> (_.isObject(config)){
+        <span class="hljs-keyword">if</span> (config.prim &amp;&amp; Primitive.knownPrimitive(config.prim))
+            <span class="hljs-keyword">this</span>._prim=config.prim.toUpperCase();
+        <span class="hljs-keyword">if</span> (config.name)
+                <span class="hljs-keyword">this</span>._name = config.name || config._name;
+        <span class="hljs-keyword">if</span> (config.type)
+                <span class="hljs-keyword">this</span>._type = config.type || config._type;
+         <span class="hljs-keyword">if</span> (config.param)
+                <span class="hljs-keyword">this</span>._param = config.param || config._param;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>Do we have specific functions for this primitive and this type of constrain?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (PRIMITIVES[<span class="hljs-keyword">this</span>._prim].constraints &amp;&amp; PRIMITIVES[<span class="hljs-keyword">this</span>._prim].constraints[<span class="hljs-keyword">this</span>._type]){
+        <span class="hljs-keyword">if</span> (PRIMITIVES[<span class="hljs-keyword">this</span>._prim].constraints[<span class="hljs-keyword">this</span>._type].met_by){
+            <span class="hljs-keyword">this</span>.met_by = PRIMITIVES[<span class="hljs-keyword">this</span>._prim].constraints[<span class="hljs-keyword">this</span>._type].met_by;
+        }
+        <span class="hljs-keyword">if</span> (PRIMITIVES[<span class="hljs-keyword">this</span>._prim].constraints[<span class="hljs-keyword">this</span>._type].single_value)
+            <span class="hljs-keyword">this</span>.single_value = PRIMITIVES[<span class="hljs-keyword">this</span>._prim][<span class="hljs-keyword">this</span>._type].constraints.single_value;
+    }
+}
+
+Constraints.UNDEF = <span class="hljs-string">"undef"</span>;
+Constraints.SINGLETON = <span class="hljs-string">"singleton"</span>;
+Constraints.RANGE = <span class="hljs-string">"range"</span>;
+Constraints.LIST = <span class="hljs-string">"list"</span>; <span class="hljs-comment">// List of acceptable values</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <p>Matches all constraints</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Constraints.CONSTRAINT_ALL = <span class="hljs-string">"*"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <h2 id="parse_constraint">parse_constraint</h2>
+<blockquote>
+<p>Given a primitive and a string value, parse a constraint 
+   string into an instance of an 
+   appropriate Constraint class.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Constraints.parse_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(prim , sval)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(prim) || _.isUndefined(sval))
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Missing parameter in parse_constraints"</span>);
+    <span class="hljs-keyword">var</span> ret = <span class="hljs-literal">null</span>; <span class="hljs-comment">// If no case applies, return an UNDEF constraints</span>
+    <span class="hljs-keyword">if</span> (sval === Constraints.CONSTRAINT_ALL)
+        ret = Constraints.CONSTRAINT_ALL;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p>If the string contains a RANGE_SEP, it should be a range constraint</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sval.indexOf(RANGE_SEP) &gt; <span class="hljs-number">0</span>){
+        <span class="hljs-keyword">var</span> sp = sval.split(RANGE_SEP);
+        options = {
+            type: Constraints.RANGE,
+            prim: prim || Primitive.UNDEF,
+            name: <span class="hljs-string">""</span>,
+            param: {valA: sp[<span class="hljs-number">0</span>],
+                    valB: sp[<span class="hljs-number">1</span>]}
+        }
+        ret =  <span class="hljs-keyword">new</span> Constraints(options);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>If the string contains a RANGE_SEP, it should be a list constraint</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sval.indexOf(SET_SEP) &gt; <span class="hljs-number">0</span>){
+        <span class="hljs-keyword">var</span> values = sval.split(SET_SEP);
+        options = {
+            type: Constraints.LIST,
+            prim: prim || Primitive.UNDEF,
+            name: <span class="hljs-string">""</span>,
+            param: values
+        }
+        ret = <span class="hljs-keyword">new</span> Constraints(options);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>Single value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">else</span> {
+         options = {
+            type: Constraints.SINGLETON,
+            prim: prim || Primitive.UNDEF,
+            name: <span class="hljs-string">""</span>,
+            param: sval
+        }
+        ret = <span class="hljs-keyword">new</span> Constraints(options);
+    }
+    <span class="hljs-keyword">return</span> ret || <span class="hljs-keyword">new</span> Constraints();
+}
+
+Constraints.prototype.unParse_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>._type){
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"range"</span>:
+            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>._param.valA + <span class="hljs-string">" ... "</span>+<span class="hljs-keyword">this</span>._param.valB);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"list"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"singleton"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+           <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._param.toString();
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <h1 id="addconstrain">addConstrain</h1>
+<blockquote>
+<p>Add a constraint to the Element. The constraint can be a json with a type and a number of 
+optional/required parameters (depending on the type of contraint) or a string valid to be parsed by parse_constraint
+The prim of constraints is taken from the prim of the element
+The config is of type {type:<constraint type>, params:{<constraint params>}}
+Return the constrain internal id so that it ca be referred programmatically</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.addConstraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span> , cons;
+    <span class="hljs-keyword">if</span> (!_.isObject(config)){
+        cons = Constraints.parse_constraint(self._prim , config);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <p>Is the prim compatible with ours?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (cons._prim !== self._prim)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Error adding constraints. The contraints type is incompatible with element type"</span>);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">if</span> ((_.isUndefined(config.type)) &amp;&amp; (_.isUndefined(config._type))){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Constrain: missing param'</span>);
+        }
+        <span class="hljs-keyword">var</span> options = {
+            type: config.type || config._type,
+            prim: self._prim.toUpperCase(),
+            name: config.name || config._name,
+            param: config.param || config._param
+        }
+        cons = <span class="hljs-keyword">new</span> Constraints(options);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <p>ADD</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._constrains.details[<span class="hljs-keyword">this</span>._constrains.__uniqueID__] = cons;
+    <span class="hljs-keyword">var</span> ret = <span class="hljs-keyword">this</span>._constrains.__uniqueID__;
+    <span class="hljs-keyword">this</span>._constrains.__uniqueID__ += <span class="hljs-number">1</span>; <span class="hljs-comment">// Next unique ID </span>
+    <span class="hljs-keyword">return</span> ret; <span class="hljs-comment">// The internal ID</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <h2 id="_clear_constraint">_clear_constraint</h2>
+<p>Clear the constraint identified by constraintsId or all constraints associated to the Element, if any</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype._clear_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(constraintId)</span>{</span>
+    <span class="hljs-keyword">if</span> (!_.isUndefined(constraintId))
+        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>._constrains.details[constraintId];
+    <span class="hljs-keyword">else</span>{
+         <span class="hljs-keyword">this</span>._constrains.details = {};
+         <span class="hljs-keyword">this</span>._constrains.__uniqueID__ = <span class="hljs-number">0</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <h2 id="setconstraintsname">setConstraintsName</h2>
+<p>set the name of a specific constraint. Name uniqueness is not granted
+Usefull if I want to refer to a constraints by name</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.setConstraintsName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(constraintsId , name)</span>{</span>
+   <span class="hljs-keyword">this</span>._constrains.details[constraintsId]._name = name || <span class="hljs-string">'Constraint'</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p>Return a specific constraints set in element
+If constraintsId is undefined or null, return all the constraints</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.getConstraints = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(constraintsId)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(constraintsId))
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._constrains.details;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._constrains.details[constraintsId];
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <h2 id="met_by">met_by</h2>
+<p>checks is a value (of any type) matches a constraint set in Element
+If constraintsId is not defined or null, checks ALL the constraints
+It is a usefull shortcut to the constraints met_by function</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.met_by = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value , constraintsId)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(constraintsId)){
+        <span class="hljs-keyword">var</span> ret = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">for</span> (constr <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>._constrains.details){
+            ret = ret &amp;&amp; (<span class="hljs-keyword">this</span>._constrains.details[constr].met_by(value));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <p>It will never become true :&gt;)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (!ret)
+                    <span class="hljs-keyword">return</span> ret;
+        }
+        <span class="hljs-keyword">return</span> ret;
+    }
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span>(<span class="hljs-keyword">this</span>._constrains.details[constraintsId].met_by(value));
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <h2 id="isvalid">isValid</h2>
+<p>Shortcut to Element primitive isValid method</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Element.prototype.isValid = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+    <span class="hljs-keyword">return</span> PRIMITIVES[<span class="hljs-keyword">this</span>._prim].isValid(value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="parameter">Parameter</h1>
+<p> A Parameter is an element which can take a constraint and a value. 
+   In Capabilities, Parameters have constraints and no value; in
+   Specifications and Results, Parameters have both constraints and
+   values.
+The creation of a parameter can be done directly through an Element instance, with the element name from the registry or with an instance of parameter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(el , value)</span>{</span>
+    <span class="hljs-keyword">if</span> (el <span class="hljs-keyword">instanceof</span> Element)
+        <span class="hljs-keyword">this</span>._element = el;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_.isString(el))
+        <span class="hljs-keyword">this</span>._element = <span class="hljs-keyword">new</span> Element(el);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>   if (!this._element)
+       throw new Error(“Parameter el is not valid”);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.setValue(value);
+}
+
+Parameter.prototype.hasValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> (!(_.isNull(<span class="hljs-keyword">this</span>._value) || _.isUndefined(<span class="hljs-keyword">this</span>._value)));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <h2 id="setvalue">setValue</h2>
+<p>Set a specific value to a parameter.
+If the value does not meet the isValid func defined for the PAramter primitive and the defined constraints, throws an error</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Parameter.prototype.setValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(val))
+        <span class="hljs-keyword">return</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>   console.log(this);
+   console.log(“value:”+val);
+   console.log(this._element.isValid(val))
+   console.log((this._element.met_by(val)))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>._element.isValid(val)) &amp;&amp; (<span class="hljs-keyword">this</span>._element.met_by(val)))
+        <span class="hljs-keyword">this</span>._value = val;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Value is not valid for this parameter"</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>Exposes the Element met_by</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Parameter.prototype.met_by = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element.met_by(value);
+}
+
+Parameter.prototype.getValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._value;
+}
+Parameter.prototype.getConstraints = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element.getConstraints();
+}
+
+Parameter.prototype._clear_constraint = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(constraintId)</span>{</span>
+    <span class="hljs-keyword">this</span>._element._clear_constraint(constraintId);
+}
+
+Parameter.prototype.getDescription = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element._desc;
+}
+Parameter.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._element._name;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <h2 id="to_dict">to_dict</h2>
+<p>Return a serialized (string) json representation of the parameter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Parameter.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <h1 id="metravalue">Metravalue</h1>
+<blockquote>
+<p>A Metavalue is an element which can take an unconstrained value.
+   Metavalues are used in statement metadata sections.
+<strong><em>Just do not set Constraints :&gt;)</em></strong></p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Metavalue = Parameter;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <h2 id="resultcolumn">ResultColumn</h2>
+<blockquote>
+<p>A ResultColumn is an element which can take a collection of values (key:value). 
+   In Capabilities and Specifications, this collection is empty, while in
+   Results it has one or more values, such that all the ResultColumns
+   in the Result have the same number of values.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> ResultColumn = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(el , value)</span>{</span>
+    <span class="hljs-keyword">this</span>._vals = {};
+    <span class="hljs-keyword">if</span> (el <span class="hljs-keyword">instanceof</span> Element)
+        <span class="hljs-keyword">this</span>._element = el;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_.isString(el))
+        <span class="hljs-keyword">this</span>._element = <span class="hljs-keyword">new</span> Element(el);
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._element)
+        <span class="hljs-keyword">this</span>._element = <span class="hljs-keyword">new</span> Element(); <span class="hljs-comment">// Try to create a new undefined element</span>
+    <span class="hljs-keyword">this</span>.setValue(value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <h2 id="setvalue">setValue</h2>
+<p>Set a specific value to a ResultColumn.
+val can  be a collection in the form {key:value,…}
+If one of the values does not meet the isValid func defined for the Element primitive and the defined constraints, throws an error</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>ResultColumn.prototype.setValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span>{</span>
+    <span class="hljs-keyword">if</span> (!val || _.isUndefined(val))
+        val = {};
+    <span class="hljs-keyword">if</span> (_.isObject(val)){
+        <span class="hljs-keyword">for</span> (el <span class="hljs-keyword">in</span> val){
+            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>._element.isValid(val[el])) &amp;&amp; (<span class="hljs-keyword">this</span>._element.met_by(val[el])))
+                <span class="hljs-keyword">this</span>._vals[el] = val[el];
+             <span class="hljs-keyword">else</span>{
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Value is not valid for this parameter"</span>);
+             }
+        }
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"You should provide a json to ResultColumn.prototype.setValue"</span>);
+    }
+
+}
+ResultColumn.prototype.__setitem__ == ResultColumn.prototype.setValue;
+
+ResultColumn.prototype.delValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(key)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._vals[key])
+        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>._vals[key];
+}
+ResultColumn.prototype.__delitem__ == ResultColumn.prototype.delValue;
+
+ResultColumn.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">this</span>._vals = {};
+}
+
+ResultColumn.prototype.getValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(key)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(key)){
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._vals;
+    }
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._vals[key];
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <h1 id="statement">Statement</h1>
+<p>A Statement is an assertion about the properties of a measurement
+   or other action performed by an mPlane component. This class 
+   contains common implementation for the three kinds of mPlane
+   statement. Implementations should use the
+   mplane.Capability, mplane.Specification, mplane.Result
+Configuration can be taken from a dictionary, or with configuration paramenters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Statement = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">if</span> (!config){
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._config){
+            config = <span class="hljs-keyword">this</span>._config;
+            <span class="hljs-keyword">this</span>._config = <span class="hljs-literal">null</span>;
+        }
+    }
+    <span class="hljs-keyword">if</span> (config.dictval)
+        config = <span class="hljs-keyword">this</span>._from_dict(config.dictval);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>If we are importing from dict the names are the same as internal (with leading <em>), otherwise it is simpler to have no trailing </em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>     <span class="hljs-keyword">this</span>._params =  config.params || config._params || {};
+
+    <span class="hljs-keyword">this</span>._metadata = config.metadata || config._metadata || {};
+    <span class="hljs-keyword">this</span>._resultcolumns = config.resultcolumns || config._resultcolumns || {};
+    <span class="hljs-keyword">this</span>._link = config.link || config._link || <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>._verb = config.verb || config._verb || Statement.VERB_MEASURE;
+    <span class="hljs-keyword">this</span>._label = config.label || config._label || <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>._when = config.when || config._when || when_infinite;
+    <span class="hljs-keyword">this</span>._token = config.token || config._token || <span class="hljs-keyword">this</span>._default_token();
+    <span class="hljs-keyword">this</span>._schedule = config.schedule || config._schedule || <span class="hljs-literal">null</span>; <span class="hljs-comment">// completely ignored unless this is a specification</span>
+}
+
+Statement.VERB_MEASURE = <span class="hljs-string">"measure"</span>;
+Statement.VERB_QUERY = <span class="hljs-string">"query"</span>;
+Statement.VERB_COLLECT = <span class="hljs-string">"collect"</span>;
+Statement.VERB_STORE = <span class="hljs-string">"store"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <h3 id="parameter">parameter</h3>
+<h2 id="add_parameter">add_parameter</h2>
+<p>Adds a parameter to the Statement, starting from a name, an element and value
+Constraints should be added to the element BEFORE adding to the Statement</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.add_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parameter_name , element ,  value)</span>{</span>
+    <span class="hljs-keyword">this</span>._params[parameter_name] = <span class="hljs-keyword">new</span> Parameter(element , value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <h2 id="add_parameter_from_dict">add_parameter_from_dict</h2>
+<p>Add a parameter to the statement from a (valid) dictionary</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.add_parameter_from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(dict , param_name)</span>{</span>
+    <span class="hljs-keyword">var</span> new_param = <span class="hljs-built_in">JSON</span>.parse(dict);
+    <span class="hljs-keyword">if</span> (! new_param <span class="hljs-keyword">instanceof</span> Parameter)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"The dictionary for the param is not valid"</span>);
+    <span class="hljs-keyword">this</span>._params[param_name] =  <span class="hljs-built_in">JSON</span>.parse(dict);
+}
+
+
+Statement.prototype.has_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parameter_name)</span>{</span>
+    <span class="hljs-keyword">return</span>(_.contains(_.keys(<span class="hljs-keyword">this</span>._params),parameter_name));
+}
+
+Statement.prototype.parameter_names = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> _.keys(<span class="hljs-keyword">this</span>._params);
+}
+
+Statement.prototype.count_parameters = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> (_.keys(<span class="hljs-keyword">this</span>._params)).length;
+}
+
+Statement.prototype.get_parameter_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._params[param_name].getValue() || <span class="hljs-literal">null</span>;
+}
+
+Statement.prototype.get_parameter_constraints = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._params[param_name].getValue() || <span class="hljs-literal">null</span>;
+}
+
+Statement.prototype.set_parameter_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name , value)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._params[param_name])
+        <span class="hljs-keyword">this</span>._params[param_name].setValue(value);
+}
+
+Statement.prototype.del_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._params[param_name])
+        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>._params[param_name];
+}
+
+Statement.prototype.get_parameter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(param_name)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._params[param_name])
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._params[param_name];
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <h3 id="metadata">metadata</h3>
+<blockquote>
+<p>MetaData are not structured so you can store any type of information and objects in metatdata</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.add_metadata = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(meta_name , value)</span>{</span>
+        <span class="hljs-keyword">this</span>._metadata[meta_name] = value || <span class="hljs-string">""</span>;
+}
+
+Statement.prototype.has_metadata = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(meta_name )</span>{</span>
+     <span class="hljs-keyword">return</span>(_.contains(_.keys(<span class="hljs-keyword">this</span>._metadata),meta_name));
+}
+
+Statement.prototype.get_metadata_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(meta_name)</span>{</span>
+      <span class="hljs-keyword">return</span>(<span class="hljs-keyword">this</span>._metadata[meta_name]);
+}
+
+Statement.prototype.metadata_names = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> _.keys(<span class="hljs-keyword">this</span>._metadata);
+}
+
+Statement.prototype.count_metadata = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> _.keys(<span class="hljs-keyword">this</span>._metadata).length;
+}
+
+Statement.prototype.set_metadata_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(meta_name , value)</span>{</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._metadata[meta_name])
+        <span class="hljs-keyword">this</span>._metadata[meta_name]=value; <span class="hljs-comment">// noextra check on metaData</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <h3 id="result_column-in-statement">result_column in Statement</h3>
+<blockquote>
+<p>Programatically add a result column to this Statement.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.add_result_column = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(elem_name , element)</span>{</span>
+    <span class="hljs-keyword">var</span> resCol = <span class="hljs-keyword">new</span> ResultColumn(element);
+    <span class="hljs-keyword">this</span>._resultcolumns[elem_name] = resCol;
+    <span class="hljs-keyword">return</span> resCol;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <h3 id="here-we-set-a-result-in-a-result_column">Here we set a result in a result_column</h3>
+<blockquote>
+<p>Programatically set a ResultColumn.
+value should be a key,value obj</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.set_result_column_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result_column , value)</span>{</span>
+    <span class="hljs-keyword">this</span>._resultcolumns[result_column].setValue(value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p>Number of result rows in a specific resultColumn</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.count_result_rows = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result_column)</span>{</span>
+    <span class="hljs-keyword">return</span>(_.keys(<span class="hljs-keyword">this</span>._resultcolumns[result_column]._vals).length)
+}
+
+Statement.prototype.result_column_names = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> _.keys(<span class="hljs-keyword">this</span>._resultcolumns);
+}
+
+Statement.prototype.get_result_column_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rc_name , key)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._resultcolumns[rc_name].getValue(key);
+}
+
+Statement.prototype.count_result_columns = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rc_name , value)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.result_column_names().length;
+}
+
+Statement.prototype.has_result_columns = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(rc_name)</span>{</span>
+    <span class="hljs-keyword">return</span>(_.contains(_.keys(<span class="hljs-keyword">this</span>._resultcolumns),rc_name));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <h3 id="link">link</h3>
+<blockquote>
+<p>A link specifies where the next message in the workflow should be sent to or retrieved from.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.get_link = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._link;
+}
+
+Statement.prototype.set_link = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(link)</span>{</span>
+    <span class="hljs-keyword">this</span>._link = link;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <h3 id="label">label</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.get_label = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._label;
+}
+
+Statement.prototype.set_label = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(label)</span>{</span>
+    <span class="hljs-keyword">this</span>._label = label;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <h3 id="when">when</h3>
+<blockquote>
+<p>Statement temporal scope</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.get_when = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._when;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <h3 id="set_when">set_when</h3>
+<blockquote>
+<p>Set the statement’s temporal scope. Ensures that the temporal scope is
+We can pass a When instance or directly a valid string for a when initialization</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.set_when = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(wh)</span>{</span>
+    <span class="hljs-keyword">var</span> w = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (wh <span class="hljs-keyword">instanceof</span> when)
+        w = wh;
+    <span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">try</span>{
+            w = <span class="hljs-keyword">new</span> when(wh);
+        }<span class="hljs-keyword">catch</span>(e){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
+              </div>
+              <p>If there an error in the parameter, set to now</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            w = <span class="hljs-keyword">new</span> when(when.NOW);
+        }
+    }
+    <span class="hljs-keyword">this</span>._when = w;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-100">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-100">&#182;</a>
+              </div>
+              <h2 id="_schema_hash">_schema_hash</h2>
+<p>Return a hex string uniquely identifying the set of parameters
+and result columns (the schema) of this statement.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype._schema_hash = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> md5(<span class="hljs-string">"p "</span> + <span class="hljs-string">" "</span> + _.reduce(_.sortBy(<span class="hljs-keyword">this</span>.parameter_names()) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)})+ <span class="hljs-string">" r "</span> + <span class="hljs-string">" "</span> + _.reduce(_.sortBy(<span class="hljs-keyword">this</span>.result_column_names()) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, rc)</span>{</span><span class="hljs-keyword">return</span>(concat+rc)} ));
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-101">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <h2 id="_pv_hash">_pv_hash</h2>
+<p>Return a hex string uniquely identifying the set of parameters,
+temporal scope, parameter values, and result columns 
+of this statement. Used as a specification key.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype._pv_hash = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">var</span> spk = _.sortBy(_.keys(<span class="hljs-keyword">this</span>._params)),
+            spv = [];
+        <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> spk){
+            spv.push(<span class="hljs-keyword">this</span>.get_parameter_value(spk[k]));
+        }
+        tstr = <span class="hljs-keyword">this</span>._verb + <span class="hljs-string">" w "</span> + <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>._when) + 
+               <span class="hljs-string">" pk "</span> + <span class="hljs-string">" "</span> + _.reduce(spk , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) + 
+               <span class="hljs-string">" pv "</span> + <span class="hljs-string">" "</span> +  _.reduce(spv , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) + 
+               <span class="hljs-string">" r "</span> + <span class="hljs-string">" "</span> + _.reduce(_.sortBy(<span class="hljs-keyword">this</span>.result_column_names()) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)} );
+        <span class="hljs-keyword">return</span> md5(tstr);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-102">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-102">&#182;</a>
+              </div>
+              <h2 id="_mpcv_hash">_mpcv_hash</h2>
+<p>Return a hex string uniquely identifying the set of parameters,
+temporal scope, parameter constraints, parameter values, metadata, metadata values, 
+and result columns (the extended specification) of this statement.
+Used as a complete token for statements.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype._mpcv_hash = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">var</span> spk = _.sortBy(<span class="hljs-keyword">this</span>.parameter_names()),
+            spv = [],
+            spc = [],
+            smk = _.sortBy(<span class="hljs-keyword">this</span>.metadata_names()),
+            smv = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-103">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p>Parameters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> spk){
+            spv.push(<span class="hljs-keyword">this</span>.get_parameter_value(spk[k]));
+            spc.push(<span class="hljs-keyword">this</span>._params[spk[k]].getConstraints());
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <p>Metadata</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> smk){
+            smv.push(<span class="hljs-keyword">this</span>.get_metadata_value(smk[k]));
+        }
+       
+        <span class="hljs-keyword">var</span> tstr = <span class="hljs-keyword">this</span>._verb + <span class="hljs-string">" w "</span> + <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>._when) +
+               <span class="hljs-string">" pk "</span> + <span class="hljs-string">" "</span> + _.reduce(spk , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) +
+               <span class="hljs-string">" pc "</span> + <span class="hljs-string">" "</span> + _.reduce(spc , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) + <span class="hljs-string">" pv "</span> + <span class="hljs-string">" "</span> + 
+                _.reduce(spv , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) 
+               <span class="hljs-string">" mk "</span> + <span class="hljs-string">" "</span> + _.reduce(smk , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)}) + <span class="hljs-string">" mv "</span> + <span class="hljs-string">" "</span> + 
+                _.reduce(smv , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)})
+               <span class="hljs-string">" r "</span> + <span class="hljs-string">" "</span> + _.reduce(_.sortBy(<span class="hljs-keyword">this</span>.result_column_names()) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(concat, param)</span>{</span><span class="hljs-keyword">return</span>(concat+param)} );
+        <span class="hljs-keyword">return</span> md5(tstr);
+}
+
+Statement.prototype._default_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._mpcv_hash();
+}
+
+Statement.prototype.get_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._token)
+            <span class="hljs-keyword">this</span>._token = <span class="hljs-keyword">this</span>._default_token();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}
+Statement.prototype.update_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">this</span>._token = <span class="hljs-keyword">this</span>._default_token();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}
+Statement.prototype.set_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span>{</span>
+    <span class="hljs-keyword">this</span>._token = token;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
+              </div>
+              <h2 id="_result_rows">_result_rows</h2>
+<p>Returns the result rows</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype._result_rows = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(resultColumn)</span>{</span>
+    <span class="hljs-keyword">if</span> (_.isUndefined(resultColumn))
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"resultColumn should be a valid column in _result_rows"</span>);
+    <span class="hljs-keyword">var</span> rows = [],
+        rck = _.keys(<span class="hljs-keyword">this</span>.get_result_column_value(resultColumn));
+    
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span> ; i&lt; <span class="hljs-keyword">this</span>.count_result_rows(resultColumn) ; i++){
+            rows.push(<span class="hljs-keyword">this</span>._resultcolumns[resultColumn]._vals[rck[i]]);
+        }
+    <span class="hljs-keyword">return</span> rows;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-106">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <h2 id="to_dict">to_dict</h2>
+<p>Convert a Statement to a dictionary (JSON FORMAT)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <h2 id="_from_dict">_from_dict</h2>
+<p>Fill in this Statement with values from a dictionary (Json format)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement._from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.parse(d);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <h1 id="validate">validate</h1>
+<p>Checks that all the parameters have values set</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Statement.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">var</span> pn = <span class="hljs-keyword">this</span>.parameter_names();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt; <span class="hljs-keyword">this</span>.count_parameters() ; i++){
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._params[pn[i]].hasValue())
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+Statement.prototype._clear_constraints = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">var</span> pn = <span class="hljs-keyword">this</span>.parameter_names();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt; <span class="hljs-keyword">this</span>.count_parameters() ; i++){
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._params[pn[i]]._clear_constraint())
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    }       
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <hr>
+<pre><code>                             CAPABILITY
+</code></pre><hr>
+<h1 id="capability">Capability</h1>
+<p>   A Capability represents something an mPlane component can do.
+   Capabilities contain verbs (strings identifying the thing the
+   component can do), parameters (which must be given by a client
+   in a Specification in order for the component to do that thing),
+   metadata (additional information about the process used to do
+   that thing), and result columns (the data that thing will return).</p>
+<p>   Capabilities can either be created programatically, using the
+   add_parameter(), add_metadata(), and add_result_column()
+   methods, or by reading from a JSON or YAML object [FIXME document
+   how this works once it’s written]
+The capability can be created starting from a Statement obj of from a valid JSON to create the new statement </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Capability = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    Statement.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+}
+
+util.inherits(Capability, Statement);
+
+Capability.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> KIND_CAPABILITY;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <h2 id="fulfills">fulfills</h2>
+<p>verify that the schema hash is equal 
+CHECKME: not clear to me…
+Capability.prototype.fulfills = function(){</p>
+<p>//        if this._schema_hash() != Capability._schema_hash():
+//            return False</p>
+<pre><code>   <span class="hljs-comment">// Verify that the specification is within the capability's temporal scope</span>
+   <span class="hljs-keyword">if</span> ! <span class="hljs-keyword">this</span>._when.follows(capability.when()):
+       <span class="hljs-keyword">return</span> False
+
+   # Works <span class="hljs-keyword">for</span> me.
+   <span class="hljs-keyword">return</span> True
+</code></pre><p>}</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <h2 id="__params_from_dict">__params_from_dict</h2>
+<p>Fill in parameters from a dictionary; used internally.
+The dictionary can contain any number of FULL DEFINED parameters
+The dictionary is intended to be JSON formatted, in this form
+{“parameter_name” : dict, …}
+FIXME: do some in deep test with this!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Capability.prototype._params_from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
+    <span class="hljs-keyword">var</span> pn = _.keys(d);
+    <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span> ; i&lt;d.length ; i++){
+        Capability.add_parameter_from_dict(d[pd[i]]);
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
+              </div>
+              <h1 id="specification">Specification</h1>
+<p>A Specification represents a request for an mPlane component to do 
+   something it has advertised in a Capability.<br>   Capabilities contain verbs (strings identifying the thing the
+   component can do), parameters (which must be given by a client
+   in a Specification in order for the component to do that thing),
+   metadata (additional information about the process used to do
+   that thing), and result columns (the data that thing will return). </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p>   Specifications are created either by passing a Capability the
+   Specification is intended to use as the capability= argument of
+   the constructor, or by reading from a JSON or YAML object 
+   [FIXME document how this works once it’s written]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> Specification = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">this</span>._config = config;
+
+    <span class="hljs-keyword">this</span>._schedule = config.schedule || config._schedule || <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (config.capability){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">this</span>._verb = config.capability._verb || config.capability.verb || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._label = config.capability._label || config.capability.label || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._metadata = config.capability._metadata || config.capability.metadata || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._params = config.capability._params || config.capability.params || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._resultcolumns = config.capability._resultcolumns || config.capability.resultcolumns || <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">if</span> (config.when || config._when)
+        <span class="hljs-keyword">this</span>._when = config.when || config._when;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>Call the Statement (super) contructor</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    Statement.apply(<span class="hljs-keyword">this</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<span class="hljs-comment">// Chaining</span>
+}
+util.inherits(Specification, Statement);
+
+Specification.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+            <span class="hljs-keyword">return</span> KIND_SPECIFICATION;
+}
+
+Specification.prototype._default_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._pv_hash();
+}
+
+Specification.prototype.has_schedule = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+            <span class="hljs-keyword">return</span> (!_.isNull(<span class="hljs-keyword">this</span>._schedule));
+}
+
+Specification.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">return</span> (<span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>));
+}
+
+<span class="hljs-comment">/**
+ * Returns a parameter object, from the name of a param defined in the specification
+ * @param paramName
+ * @returns {Paramenter}
+ */</span>
+Specification.prototype.getParameter =<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(paramName)</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Parameter(<span class="hljs-keyword">new</span> Element(<span class="hljs-keyword">this</span>._params[paramName]._element) , <span class="hljs-keyword">this</span>._params[paramName]._value);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <h1 id="from_dict">from_dict</h1>
+<p>Return a Specification obj from a (valid) dictionary 
+Throws an error in case the dictionary is not valid</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Specification.from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>    
+    <span class="hljs-keyword">var</span> spec = <span class="hljs-built_in">JSON</span>.parse(d);
+    <span class="hljs-keyword">if</span> (spec <span class="hljs-keyword">instanceof</span> Specification)
+        <span class="hljs-keyword">return</span> spec;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"The dictionary does not contain a valid Specification"</span>);
+}
+Specification.prototype.setParameterValue =<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(paramName , value)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <p>FIXME: setting in this way is very BAD!!! We should use the parameter as an object and use its own method</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>._params[paramName]._value = value;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-118">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-118">&#182;</a>
+              </div>
+              <h1 id="result">Result</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Result = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    Statement.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    
+     <span class="hljs-keyword">if</span> (config.capability){</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-119">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-119">&#182;</a>
+              </div>
+              <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">this</span>._verb = config.capability._verb || config.capability.verb || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._label = config.capability._label || config.capability.label || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._metadata = config.capability._metadata || config.capability.metadata || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._params = config.capability._params || config.capability.params || <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>._resultcolumns = config.capability._resultcolumns || config.capability.resultcolumns || <span class="hljs-literal">null</span>;
+    }<span class="hljs-keyword">else</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
+              </div>
+              <p>We can have a serialized version (with trailing ) or a programmatically config, easier without _</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>         <span class="hljs-keyword">this</span>._verb = config._verb || config.verb || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._label = config._label || config.label || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._metadata = config._metadata || config.metadata || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._params = config._params || config.params || <span class="hljs-literal">null</span>;
+         <span class="hljs-keyword">this</span>._resultcolumns = config._resultcolumns || config.resultcolumns || <span class="hljs-literal">null</span>;
+
+    }
+    <span class="hljs-keyword">if</span> (config.when || config._when)
+        <span class="hljs-keyword">this</span>._when = config.when || config._when;
+     <span class="hljs-keyword">this</span>.get_token();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-121">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-121">&#182;</a>
+              </div>
+              <p>allow parameters to take values other than constrained
+FIXME: i am not sure why this is needed…
+this._clear_constraints();</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<span class="hljs-comment">// Chaining</span>
+}
+util.inherits(Result, Statement);
+
+Result.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> KIND_RESULT;
+}
+
+Result.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">var</span> pn = <span class="hljs-keyword">this</span>.parameter_names();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt; <span class="hljs-keyword">this</span>.count_parameters() ; i++){
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._params[pn[i]].hasValue()){
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        }
+    }
+    <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">this</span>._when.is_definite()){
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-122">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-122">&#182;</a>
+              </div>
+              <h1 id="from_dict">from_dict</h1>
+<p>Return a Result obj from a (valid) dictionary 
+Throws an error in case the dictionary is not valid</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Result.from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>    
+    <span class="hljs-keyword">var</span> spec = <span class="hljs-built_in">JSON</span>.parse(d);
+    <span class="hljs-keyword">if</span> (spec <span class="hljs-keyword">instanceof</span> Result)
+        <span class="hljs-keyword">return</span> spec;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"The dictionary does not contain a valid Result"</span>);
+}
+Result.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-123">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
+              </div>
+              <h2 id="set_result_value">set_result_value</h2>
+<p>Set a value for a specific column and key
+Notice that val should be in the form {key: value}</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Result.prototype.set_result_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(columnName, val)</span>{</span>
+            <span class="hljs-keyword">this</span>._resultcolumns[columnName].setValue(val);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-124">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-124">&#182;</a>
+              </div>
+              <h2 id="get_result_value">get_result_value</h2>
+<p>Get a value for a specific column and key
+If key is not specified, return all the rows for that specific column</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Result.prototype.get_result_value = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(columnName, key)</span>{</span>
+       <span class="hljs-keyword">return</span>  <span class="hljs-keyword">this</span>._resultcolumns[columnName].getValue(key);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-125">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-125">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<p> Notifications</p>
+<p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-126">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-126">&#182;</a>
+              </div>
+              <h1 id="barenotification">BareNotification</h1>
+<p>Notifications are used to send additional information between
+   mPlane clients and components other than measurement statements.
+   Notifications can either be part of a normal measurement workflow
+   (as Receipts and Redemptions) or signal exceptional conditions
+   (as Withdrawals and Interrupts).</p>
+<p>   This class contains implementation common to all Notifications
+   which do not contain any information from a related Capability
+   or Specification.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> BareNotification = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    <span class="hljs-keyword">this</span>._token = config.token || <span class="hljs-literal">null</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-127">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-127">&#182;</a>
+              </div>
+              <h1 id="exception">Exception</h1>
+<p>A Component sends an Exception to a Client, or a Client to a 
+   Component, to present a human-readable message about a failure
+   or non-nominal condition </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Exception = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    BareNotification.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    
+    <span class="hljs-keyword">this</span>._errmsg = config.errmsg || <span class="hljs-string">"Unspecified exception"</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(Exception, BareNotification);
+   
+
+Exception.prototype.get_token = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._token;
+}
+
+Exception.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
+}
+
+Exception._from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
+    <span class="hljs-keyword">var</span> ret = <span class="hljs-built_in">JSON</span>.parse(d);
+    <span class="hljs-keyword">if</span> (! ret <span class="hljs-keyword">instanceof</span> Exception)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> error(<span class="hljs-string">"The dictionary should be a valid Exception instance"</span>);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> ret
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-128">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-128">&#182;</a>
+              </div>
+              <h1 id="statementnotification">StatementNotification</h1>
+<p>Common implementation superclass for notifications that 
+   may contain all or part of a related Capability or Specification.</p>
+<p>   Clients and components should use mplane.Receipt,
+   mplane.Redemption, and mplane.Withdrawal
+   directly</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> StatementNotification = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    Statement.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+        
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(StatementNotification, Statement);
+
+Statement.prototype.to_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>);
+}
+
+Statement._from_dict = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span>{</span>
+    <span class="hljs-keyword">var</span> ret = <span class="hljs-built_in">JSON</span>.parse(d);
+    <span class="hljs-keyword">if</span> (! ret <span class="hljs-keyword">instanceof</span> Statement)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> error(<span class="hljs-string">"The dictionary should be a valid Statement instance"</span>);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> ret
+}
+
+Statement.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> error(<span class="hljs-string">"Cannot instantiate a raw StatementNotification"</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-129">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-129">&#182;</a>
+              </div>
+              <h1 id="receipt">Receipt</h1>
+<p>A component presents a receipt to a Client in lieu of a result, when the
+    result will not be available in a reasonable amount of time; or to confirm
+    a Specification </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Receipt = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    StatementNotification.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+      <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(Receipt, StatementNotification);
+
+Receipt.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">return</span> KIND_RECEIPT;
+}
+Receipt.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validate();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-130">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-130">&#182;</a>
+              </div>
+              <h1 id="redemption">Redemption</h1>
+<p>A client presents a Redemption to a component from which it has received
+   a Receipt in order to get the associated Result.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Redemption = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(StatementNotification)</span>{</span>
+    StatementNotification.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    <span class="hljs-keyword">if</span> (!_.isUndefined(config.receipt))
+            <span class="hljs-keyword">this</span>._token = receipt.get_token();
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(Redemption, StatementNotification);
+    
+Redemption.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">return</span> KIND_REDEMPTION;
+}
+
+
+Redemption.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validate();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-131">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-131">&#182;</a>
+              </div>
+              <h1 id="withdrawal">Withdrawal</h1>
+<p>A Withdrawal cancels a Capability</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Withdrawal = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(config)</span>{</span>
+    StatementNotification.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(Withdrawal, StatementNotification);
+  
+Withdrawal.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> KIND_WITHDRAWAL;
+}
+Withdrawal.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validate();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-132">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <h1 id="interrupt">Interrupt</h1>
+<p>An Interrupt cancels a Specification</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Interrupt = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    StatementNotification.apply( <span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span> ); <span class="hljs-comment">// Call the Statement (super) contructor</span>
+    <span class="hljs-keyword">if</span> (!config)
+        config = {};
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">//Chainig</span>
+}
+util.inherits(Interrupt, StatementNotification);
+  
+Interrupt.prototype.kind_str = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+        <span class="hljs-keyword">return</span> KIND_INTERRUPT;
+}
+Interrupt.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validate();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
+              </div>
+              <p>////////////////////////////////////////////////////////////////////////////////////////////</p>
+<h1 id="utility-functions">Utility functions</h1>
+<p>A set of functions usefull for support tasks </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> utility = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-134">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-134">&#182;</a>
+              </div>
+              <h2 id="_parse_numset-parsenumset-">_parse_numset (parseNumSet)</h2>
+<p>Parse a set to an array of integers
+CHECKME:how do we handle non numeric values? parseInt will return NaN</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>utility._parse_numset = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valstr)</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-135">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-135">&#182;</a>
+              </div>
+              <p>Iterate through each token from split and convert to integer</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>   <span class="hljs-keyword">return</span> _.map(valstr.split(SET_SEP) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, index)</span>{</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(value);
+    } );
+}
+utility.parseNumSet = utility._parse_numset;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-136">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-136">&#182;</a>
+              </div>
+              <h2 id="_unparse_numset-unparsenumset-">_unparse_numset (unParseNumSet)</h2>
+<p>From an array of numbers to a string of values separated by SET_SEP</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>utility._unparse_numset = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valset)</span>{</span>
+    <span class="hljs-keyword">return</span> (valset.join(SET_SEP))
+}
+utility.unParseNumSet = utility._unparse_numset;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-137">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-137">&#182;</a>
+              </div>
+              <h2 id="return-an-array-of-day-of-week-from-a-string-with-set_sep-separator">Return an array of day of week from a string with SET_SEP separator</h2>
+<p>CHECKME: se ho capito bene restituisce un array con i numeri del giorno della settimana </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>utility._parse_wdayset = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valstr)</span>{</span>
+    <span class="hljs-keyword">return</span> _.map(valstr.split(SET_SEP) , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, index)</span>{</span>
+        <span class="hljs-keyword">return</span> _dow_label.indexOf(value.toLocaleLowerCase().trim());
+    } );
+}
+utility.parseWdaySet = utility._parse_wdayset;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-138">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-138">&#182;</a>
+              </div>
+              <h2 id="from-an-array-of-numbers-return-a-string-of-days-of-week-separated-by">From an array of numbers, return a string of days of week separated by</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>utility._unparse_wdayset = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(valset)</span>{</span>
+    <span class="hljs-keyword">return</span> _.map(valset , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, index)</span>{</span>
+        <span class="hljs-keyword">return</span> _dow_label[<span class="hljs-built_in">parseInt</span>(value)];
+    } ).join(SET_SEP);
+}
+utility.unparseWdaySet = utility._unparse_wdayset;
+
+
+utility.isInt = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(n)</span> {</span>
+   <span class="hljs-keyword">return</span> (n % <span class="hljs-number">1</span> === <span class="hljs-number">0</span>);
+}
+
+utility.isReal = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(n)</span>{</span>
+    <span class="hljs-keyword">return</span> ( !<span class="hljs-built_in">isNaN</span>(<span class="hljs-built_in">parseFloat</span> ( n )));
+}
+
+<span class="hljs-comment">/**
+ * Compares 2 IP addresses
+ * Return 1 if B&gt;A, -1 if B&lt;A, 0 if B=A
+ * @param A
+ * @param B
+ * @returns {*}
+ */</span>
+utility.compareIP = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(A , B)</span>{</span>
+    <span class="hljs-keyword">if</span> (!A || !B)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">var</span> resultB = B.split(<span class="hljs-string">"."</span>);
+    <span class="hljs-keyword">var</span> resultA = A.split(<span class="hljs-string">"."</span>);
+
+    <span class="hljs-keyword">if</span> (!resultA || !resultB)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt;<span class="hljs-number">4</span> ; i++){
+        ret = (<span class="hljs-built_in">parseInt</span>(resultB[i]) - <span class="hljs-built_in">parseInt</span>(resultA[i]));
+        <span class="hljs-keyword">if</span> (ret != <span class="hljs-number">0</span>){
+
+            <span class="hljs-keyword">if</span> (ret &gt; <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">return</span>(<span class="hljs-number">1</span>)
+            <span class="hljs-keyword">else</span>
+                <span class="hljs-keyword">return</span>(-<span class="hljs-number">1</span>);
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-139">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-139">&#182;</a>
+              </div>
+              <blockquote>
+<p>Exports</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = {
+    time: time,
+    when: when,
+    When: when,
+    when_infinite: when_infinite,
+    utility: utility,
+    Scheduler: Scheduler,
+    Primitive : Primitive,
+    Element: Element,
+    Constraints: Constraints,
+    Parameter: Parameter,
+    Metavalue: Metavalue,
+    ResultColumn: ResultColumn,
+    Statement: Statement,
+    Capability: Capability,
+    Specification: Specification,
+    Result: Result,
+    Receipt: Receipt,
+    Redemption:Redemption,
+    Withdrawal: Withdrawal
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
