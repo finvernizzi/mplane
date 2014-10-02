@@ -54,6 +54,9 @@ pingerCapability.add_result_column("delay.twoway")
 pingerCapability.set_label("DEMO pinger");
 ```
 
+Please refer to the Examples directory for a working mPlane probe.
+For a complete set of mPlane components (probe, supervisor and client) build by means of this repository, please refer to [mPlane components](https://github.com/finvernizzi/mplane_components).
+
 ##Chainability
 Each mPlane function supports chainability
 For example you can define all the parameters in a single chain:
@@ -78,8 +81,6 @@ pingerCapability.add_parameter({
 The base mPlane library implements the mPlane Information Model elements that can be used to build messages to be carried on top of any protocol of choice (SSH, HTTP,...).
 A nodejs HTTPS API has been implemented for basic usage (create and read elements) and can be find [here](https://github.com/finvernizzi/mplane_http_transport.git).
 
-Please refer to the Examples directory for a working mPlane probe.
-For a complete set of mPlane components (probe, supervisor and client) build by means of this repository, please refer to [mPlane components](https://github.com/finvernizzi/mplane_components).
 
 #Documentation
 
