@@ -7,7 +7,7 @@
     "examples": "Examples"
   },
   "dependencies": {
-        "lodash": ">2.4.1",
+        "lodash": ">2.4.0",
         "cron": ">1.0.4",
         "url": ">0.7.9",
         "sha1": ">0.1.1",
