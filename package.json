@@ -4,19 +4,17 @@
   "description": "mPlane nodeJS implementation",
   "main": "mplane.js",
   "directories": {
-    "doc": "docs",
     "examples": "Examples"
   },
   "dependencies": {
-        "lodash": "~2.4.1",
-        "cron": "~1.0.4",
-        "url": "~0.7.9",
-        "sha1": "~0.1.1",
-        "fs": "~0.0.2",
-        "util": "~0.10.1"
+        "lodash": ">2.4.1",
+        "cron": ">1.0.4",
+        "url": ">0.7.9",
+        "sha1": ">0.1.1",
+        "fs": ">0.0.2",
+        "util": ">0.10.1"
   },
   "scripts": {
-    "test": "node ./test/test.js"
   },
  "repository" : { 
      "type" : "git",
