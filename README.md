@@ -131,7 +131,7 @@ The base mPlane library implements the mPlane Information Model elements that ca
 A nodejs HTTPS API has been implemented for basic usage (create and read elements) and can be find [here](https://github.com/finvernizzi/mplane_http_transport.git).
 
 #EXAMPLES
-A complete set of basic omponents are ready to use [here](https://github.com/finvernizzi/mplane_components). 
+A complete set of basic mPlane components is ready to use [here](https://github.com/finvernizzi/mplane_components). 
 
 #Documentation
 
