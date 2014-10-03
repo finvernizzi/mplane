@@ -130,6 +130,8 @@ This is the output of the above example
 The base mPlane library implements the mPlane Information Model elements that can be used to build messages to be carried on top of any protocol of choice (SSH, HTTP,...).
 A nodejs HTTPS API has been implemented for basic usage (create and read elements) and can be find [here](https://github.com/finvernizzi/mplane_http_transport.git).
 
+#EXAMPLES
+A complete set of basic omponents are ready to use [here](https://github.com/finvernizzi/mplane_components). 
 
 #Documentation
 
