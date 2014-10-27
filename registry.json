@@ -78,7 +78,7 @@
             "prim":  "IP",
             "desc": "Destination or responder of network traffic; active reflector IPv4"
         }
-        ,"ip4":{
+        ,"ip":{
             "name": "IPv4 destination address",
             "prim":  "IP",
             "desc": "Destination or responder of network traffic; active reflector IPv4"
