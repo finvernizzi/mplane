@@ -1486,7 +1486,6 @@ Statement.prototype._mpcv_hash = function(){
                 _.reduce(smv , function(concat, param){return(concat+"_"+param)})
                " r " + " " + _.reduce(_.sortBy(this.result_column_names()) , function(concat, param){return(concat+"_"+param)} );
          */
-    console.log(tstr);
         return sha1(tstr);
 }
 
