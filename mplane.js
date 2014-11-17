@@ -1470,13 +1470,23 @@ Statement.prototype._mpcv_hash = function(){
         // Metadata
         for (k in smk){
             smv.push(this.get_metadata_value(smk[k]));
-        }var tstr = this._verb + " w " + JSON.stringify(this._when) +
+        }
+        var tstr = this._verb + " w " + JSON.stringify(this._when) +
+            " pk " + " " + spk.join("_") +
+            " pc " + " " + spc.join("_") +
+            " pv " + " " + spv.join("_") +
+        " mk " + " " + smk.join("_") + " mv " + " " + smv.join("_")+
+        " r " + " " + _.sortBy(this.result_column_names().join("_";
+
+        /*var tstr = this._verb + " w " + JSON.stringify(this._when) +
                " pk " + " " + _.reduce(spk , function(concat, param){return(concat+"_"+param)}) +
                " pc " + " " + _.reduce(spc , function(concat, param){return(concat+"_"+param)}) + " pv " + " " +
                 _.reduce(spv , function(concat, param){return(concat+"_"+param)})
                " mk " + " " + _.reduce(smk , function(concat, param){return(concat+"_"+param)}) + " mv " + " " +
                 _.reduce(smv , function(concat, param){return(concat+"_"+param)})
                " r " + " " + _.reduce(_.sortBy(this.result_column_names()) , function(concat, param){return(concat+"_"+param)} );
+         */
+    console.log(tstr);
         return sha1(tstr);
 }
 
