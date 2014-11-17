@@ -1476,7 +1476,7 @@ Statement.prototype._mpcv_hash = function(){
             " pc " + " " + spc.join("_") +
             " pv " + " " + spv.join("_") +
         " mk " + " " + smk.join("_") + " mv " + " " + smv.join("_")+
-        " r " + " " + _.sortBy(this.result_column_names().join("_";
+        " r " + " " + _.sortBy(this.result_column_names()).join("_");
 
         /*var tstr = this._verb + " w " + JSON.stringify(this._when) +
                " pk " + " " + _.reduce(spk , function(concat, param){return(concat+"_"+param)}) +
