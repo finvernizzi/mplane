@@ -1465,7 +1465,7 @@ Statement.prototype._mpcv_hash = function(){
         // Parameters
         for (k in spk){
             spv.push(this.get_parameter_value(spk[k]));
-            spc.push(this._params[spk[k]]._constrains);
+            spc.push(JSON.stringify(this._params[spk[k]]._constrains));
         }
         // Metadata
         for (k in smk){
