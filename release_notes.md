@@ -32,8 +32,12 @@
 - result and ResultValues correctly adapted in rows and column format of the RI (from_dict and to_dict)
 - BUG scripting!
 
-#0.0.6
+#0.6.0
 
 - Can read TI and standard RI registry format
 - Added primitive address
 - bool primitive is now named boolean
+
+#0.6.2
+
+- Can read registry over HTTP, HTTPS (or locally) using sync-request. Use file://<full path to registry file> for local registry

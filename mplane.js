@@ -40,7 +40,8 @@ var _ = require("lodash"),
     CronJob = require('cron').CronJob,
     fs = require("fs"),
     url = require("url"),
-    sha1 = require("sha-1");
+    sha1 = require("sha-1"),
+    request = require('sync-request');
 // --------------------------
 
 
@@ -823,17 +824,39 @@ _element_registry = {};
 // Initialize the registry from a json file
 // It is a static method, so it could be called without instantiate an element
 Element.initialize_registry = function(filename){
-    var fn = filename || __DEFAULT_REGISTRY_FILE,
+	// Try to discover if it is a local file or a remote file
+	var fn = filename || __DEFAULT_REGISTRY_FILE,
+		decodedUrl = url.parse(fn),
         registry = "";
-    try {
-    	//TODO: add the capability of read from URL
-        registry = fs.readFileSync(fn);
-        _element_registry = JSON.parse(registry);
+    if (!decodedUrl.protocol){
+    	throw new Error("Registry url format uknown:"+fn);
     }
-    catch (err) {
-        console.log('There has been an error parsing the registry file.( '+fn+')');
-        console.log(err);
+    switch (decodedUrl.protocol){
+    	case "file:":
+    		try {
+    			_element_registry = JSON.parse(fs.readFileSync(decodedUrl.path));
+    		}	
+    		catch (err) {
+        		console.log('There has been an error parsing the registry file.( '+fn+')');
+        		console.log(err);
+    		}
+    		break;
+    	case "http:":
+    	case "https:":
+    		// Sync http request
+    		res = request('GET' , decodedUrl.href);
+    		if (res.statusCode == 200){
+    			console.log(" + Registry downloaded from "+decodedUrl.href);
+    			_element_registry = JSON.parse(res.body);
+  			}else{
+  					throw new Error("Remote registry not accessible:"+decodedUrl.href)
+  			}
+			break;
+    	default:
+    		throw new Error("Registry protocol uknown:"+decodedUrl.protocol);
     }
+    
+    
 }
 
 Element.prototype.getName = function(){
