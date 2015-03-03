@@ -1,6 +1,6 @@
 {
   "name": "mplane",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "mPlane nodeJS implementation",
   "main": "mplane.js",
   "directories": {
@@ -13,7 +13,7 @@
         "sha1": ">0.1.1",
         "fs": ">0.0.0",
         "util": ">0.10.0",
-	"sync-request" : ">2.0.1"
+	"sync-request" : ">=2.0.1"
   },
   "scripts": {
   },
