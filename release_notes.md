@@ -31,3 +31,9 @@
 - from_dict can receive a string or an object. If the object is a Buffer (the result of a http request) it directly convert to JSON. This is a very common case.
 - result and ResultValues correctly adapted in rows and column format of the RI (from_dict and to_dict)
 - BUG scripting!
+
+#0.0.6
+
+- Can read TI and standard RI registry format
+- Added primitive address
+- bool primitive is now named boolean

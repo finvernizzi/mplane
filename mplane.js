@@ -562,7 +562,7 @@ var PRIMITIVES = {
             }
         }
     },
-    "BOOL":{
+    "BOOLEAN":{
         label: "bool",
         isValid: function(value){return _.isBoolean(value);},
         unParse: function(value){
@@ -606,6 +606,29 @@ var PRIMITIVES = {
         parse: function(value){return parseFloat(value); }
     },
     "IP":{
+        label: "ip",
+        isValid: function(value){return (/^(\d{1,3}\.){3,3}\d{1,3}$/.test(value))},
+        unParse: function(value){ return value; },
+        parse: function(value){return value},
+        constraints : {
+            "range" : {
+                met_by : function(value){
+                    return ((utility.compareIP(this._param.valA , value) >= 0) && (utility.compareIP(this._param.valB , value) <= 0));
+                }
+            },
+            "list" : {
+                met_by : function(value){
+                    return (_.contains(this._param, value));
+                }
+            },
+            "singleton" : {
+                met_by : function(value){
+                    return (value === this._param);
+                }
+            }
+        }
+    },
+    "ADDRESS":{
         label: "ip",
         isValid: function(value){return (/^(\d{1,3}\.){3,3}\d{1,3}$/.test(value))},
         unParse: function(value){ return value; },
@@ -753,7 +776,7 @@ var Element = function(config){
             details : {}, type: Constraints.UNDEF};
         this.addConstraint(contrs);
 
-        //this._registryOID = config._registryOID || config.registryOID || null;
+    //this._registryOID = config._registryOID || config.registryOID || null;
     }else{ // the config is a string or has the type field
         var name = "Undef";
         var oid = "Undef";
@@ -803,6 +826,7 @@ Element.initialize_registry = function(filename){
     var fn = filename || __DEFAULT_REGISTRY_FILE,
         registry = "";
     try {
+    	//TODO: add the capability of read from URL
         registry = fs.readFileSync(fn);
         _element_registry = JSON.parse(registry);
     }
@@ -823,15 +847,29 @@ Element.prototype.getDescription = function(){
 // Return an element entry from the registry from the name
 // Static method, so it could be called without instantiate an element
 Element.getFromName = function(name){
-    var names = name.split(".");
-    var ret = _element_registry;
-    for (el in names){
-        if (ret[names[el]])
-            ret = ret[names[el]];
-        else    
-            throw new Error("mPlane Element : Undefined element in registry:"+name);
-    }
-    return ret;
+	// New RI registry format
+	if (_element_registry['registry-format'] == 'mplane-0'){
+		var pos=-1;
+		pos = _.findIndex(_element_registry.elements, { 'name': name});
+		if (pos != -1)
+			return _element_registry.elements[pos] ;
+		else 
+			throw new Error("mPlane Element : Undefined element in registry:"+name);
+	}else{
+		// TI format
+		var names = name.split(".");
+    	var ret = _element_registry;
+    	for (el in names){
+        	if (ret[names[el]])
+        	    ret = ret[names[el]];
+        	else    
+        	    throw new Error("mPlane Element : Undefined element in registry:"+name);
+    	}
+    	return ret;
+	}
+	
+
+    
 };
 
 //## parse
