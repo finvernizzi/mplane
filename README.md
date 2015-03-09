@@ -22,7 +22,8 @@ var mplane = require('mplane');
 var __MY_IP__ = "192.168.0.123";
 
 // Initialize available primitives from the registry
-mplane.Element.initialize_registry("registry.json");
+// It can be a local file or a remote __URL__
+mplane.Element.initialize_registry("https://raw.githubusercontent.com/fp7mplane/protocol-ri/master/mplane/registry.json");
 
 // Create a new mPlane Capability
 var pingerCapability = new mplane.Capability();
