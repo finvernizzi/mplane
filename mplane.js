@@ -1615,6 +1615,7 @@ Statement.prototype.to_dict = function(){
     	    //ret[KEY_METADATA] = this._metadata;
     }
     
+    
     if ("_link" in this)
         ret[KEY_LINK] = this._link || "";
     if ("_token" in this)
