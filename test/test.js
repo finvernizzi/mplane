@@ -14,7 +14,7 @@ var RESULT_LENGTH = 50;
 var wdef = null;
 var wrel = null;
 
-var REGISTRY_FILE = "node_modules/test/registry.json";
+var REGISTRY_FILE = "http://www.ict-mplane.eu/registry/demo";
 
 var testList = [
     {

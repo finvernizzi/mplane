@@ -877,7 +877,8 @@ Element.getFromName = function(name){
 		if (pos != -1)
 			return _element_registry.elements[pos] ;
 		else 
-			throw new Error("mPlane Element : Undefined element in registry:"+name);
+			return false;
+			//throw new Error("mPlane Element : Undefined element in registry:"+name);
 	}else{
 		// TI format
 		var names = name.split(".");
@@ -1596,6 +1597,7 @@ Statement.prototype._result_rows = function(resultColumn){
 //##to_dict
 //Convert a Statement to a dictionary (JSON FORMAT)
 // --- Compatible with THE mPlane RI ---
+// 19052915: SDK compliance: is a meta is not in the registry, do not add it
 Statement.prototype.to_dict = function(){
     var ret = {}
         ,self = this;
@@ -1604,8 +1606,16 @@ Statement.prototype.to_dict = function(){
 
     if ("_label" in this)
         ret[KEY_LABEL] = this._label;
-    if ("_metadata" in this)
-        ret[KEY_METADATA] = this._metadata;
+    if ("_metadata" in this){
+    		_.forEach(this._metadata , function(meta){
+    			console.log(meta);
+    			if (Element.getFromName(meta.name)){}
+    				//ret[KEY_METADATA] = this._metadata;
+    		});
+    		
+    	    //ret[KEY_METADATA] = this._metadata;
+    }
+    
     if ("_link" in this)
         ret[KEY_LINK] = this._link || "";
     if ("_token" in this)
