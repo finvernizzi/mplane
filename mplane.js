@@ -1610,7 +1610,7 @@ Statement.prototype.to_dict = function(){
     		console.log("---");
     		_.forEach(this._metadata , function(meta){
     			console.log(meta);
-    			if (Element.getFromName(meta.name)){
+    			if (Element.getFromName(meta)){
     				console.log("OK")
     			}
     				//ret[KEY_METADATA] = this._metadata;
