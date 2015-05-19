@@ -1613,13 +1613,9 @@ Statement.prototype.to_dict = function(){
     			allMeta = this._metadata; // For context
     		_.forEach(metaNames , function(meta){
     			if (Element.getFromName(meta)){
-    				console.log(ret)
-    				console.log(allMeta)
     				ret[KEY_METADATA][meta] = allMeta[meta];
     			}
-    				
     		});
-    		console.log(ret[KEY_METADATA]);
     }
     
     
