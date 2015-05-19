@@ -1608,6 +1608,7 @@ Statement.prototype.to_dict = function(){
         ret[KEY_LABEL] = this._label;
     if ("_metadata" in this){
     		console.log("***");
+    		console.log(this._metadata);
     		_.forEach(this._metadata , function(meta){
     			console.log(meta);
     			if (Element.getFromName(meta)){
