@@ -1607,10 +1607,14 @@ Statement.prototype.to_dict = function(){
     if ("_label" in this)
         ret[KEY_LABEL] = this._label;
     if ("_metadata" in this){
+    		if (!ret[KEY_METADATA])
+    			ret[KEY_METADATA]={};
     		var metaNames=_.keys(this._metadata),
     			allMeta = this._metadata; // For context
     		_.forEach(metaNames , function(meta){
     			if (Element.getFromName(meta)){
+    				console.log(ret)
+    				console.log(allMeta)
     				ret[KEY_METADATA][meta] = allMeta[meta];
     			}
     				
