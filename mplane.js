@@ -1612,7 +1612,6 @@ Statement.prototype.to_dict = function(){
     			if (Element.getFromName(meta.name)){}
     				//ret[KEY_METADATA] = this._metadata;
     		});
-    		
     	    //ret[KEY_METADATA] = this._metadata;
     }
     
