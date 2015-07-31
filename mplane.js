@@ -827,7 +827,8 @@ Element.initialize_registry = function(filename){
 	// Load the declared registry
 	_element_registry = __load_registry__(filename);
 	// Try to load dependencies
-	_.assign(_element_registry , __includeRegitry__( _element_registry))	
+	var new_elements = __includeRegitry__( _element_registry)
+	 __glueRegistries__(_element_registry , new_elements )
 }
 
 // Implements includes and regitry-uri inclusion 
@@ -837,7 +838,7 @@ function __includeRegitry__(reg){
 	if (reg["registry-uri"]){
 		tmp_reg = __load_registry__(reg["registry-uri"]);
 		if (tmp_reg){
-			_.assign( ret_registry , tmp_reg );
+			__glueRegistries__( ret_registry , tmp_reg );
 		}
 
          } 
@@ -846,7 +847,7 @@ function __includeRegitry__(reg){
 		reg.includes.forEach(function(element, index, array){
 			 tmp_reg = __load_registry__(element);
                 	if (tmp_reg){
-                        	_.assign( ret_registry , tmp_reg );
+                        	__glueRegistries__( ret_registry , tmp_reg );
                 	}
 		});
 
@@ -893,6 +894,13 @@ function __load_registry__(reg_uri){
                         throw new Error("Registry protocol uknown:"+decodedUrl.protocol);
         }
 	return tmp_reg;
+}
+
+// Simply push new elements in the registry1 from regitry1
+function __glueRegistries__(reg1 , reg2){
+	if (!reg2.elements || ! reg1.elements)
+		return;
+	for (var attrname in reg2.elements) { reg1.elements.push(reg1.elements[attrname]) }
 }
 
 Element.prototype.getName = function(){
@@ -2082,6 +2090,7 @@ utility.isReal = function(n){
    >  dict can be a string or an object
  */
 from_dict = function(dict){
+	console.log(dict)
     // If it is not an obj, try to parse it as a JSON
     // FIXME: manage non valid strings or Buffers (received by reading from http requests)
     if ((typeof dict !== 'object') || (dict instanceof Buffer))
@@ -2142,7 +2151,7 @@ from_dict = function(dict){
                 // We should also set param values
                 paramConfig.value = dict.parameters[param];
             }
-            retObj.add_parameter(paramConfig);
+           retObj.add_parameter(paramConfig);
         }
     }
     // Results
