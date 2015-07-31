@@ -50,3 +50,7 @@
 
 #0.7.3
 - Now all elements from different registries all all pushed in the array
+
+
+#0.7.5
+- Debug on undefined primitives

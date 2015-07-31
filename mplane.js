@@ -789,7 +789,14 @@ var Element = function(config){
             el = Element.getFromName(config.type);
             oid = config.type;
             name = config.name || config._name || config.type || "Undef";
-            prim = el.prim.toUpperCase() || el._prim.toUpperCase() || Primitive.UNDEF;
+		try{
+            		prim = el.prim.toUpperCase() || el._prim.toUpperCase() || Primitive.UNDEF;
+		}catch(e){
+			console.log("*************************************");
+			console.log(e);
+			console.log(prim);
+			console.log("*************************************");
+		}
             constr = config.constraints;
         }else{
             //Create the element from the registry
@@ -2090,7 +2097,6 @@ utility.isReal = function(n){
    >  dict can be a string or an object
  */
 from_dict = function(dict){
-	console.log(dict)
     // If it is not an obj, try to parse it as a JSON
     // FIXME: manage non valid strings or Buffers (received by reading from http requests)
     if ((typeof dict !== 'object') || (dict instanceof Buffer))
