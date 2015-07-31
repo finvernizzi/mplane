@@ -828,8 +828,6 @@ Element.initialize_registry = function(filename){
 	_element_registry = __load_registry__(filename);
 	// Try to load dependencies
 	_.assign(_element_registry , __includeRegitry__( _element_registry))	
-	console.log( _element_registry );
-
 }
 
 // Implements includes and regitry-uri inclusion 
