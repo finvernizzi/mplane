@@ -47,3 +47,6 @@
 - Access to a registry (file or https, http) in a dedicated function
 - Support for registry-uri/includes
 - Registry access errror management
+
+#0.7.3
+- Now all elements from different registries all all pushed in the array
