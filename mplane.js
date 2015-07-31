@@ -824,39 +824,77 @@ _element_registry = {};
 // Initialize the registry from a json file
 // It is a static method, so it could be called without instantiate an element
 Element.initialize_registry = function(filename){
-	// Try to discover if it is a local file or a remote file
-	var fn = filename || __DEFAULT_REGISTRY_FILE,
-		decodedUrl = url.parse(fn),
-        registry = "";
-    if (!decodedUrl.protocol){
-    	throw new Error("Registry url format uknown:"+fn);
-    }
-    switch (decodedUrl.protocol){
-    	case "file:":
-    		try {
-    			_element_registry = JSON.parse(fs.readFileSync(decodedUrl.path));
-    		}	
-    		catch (err) {
-        		console.log('There has been an error parsing the registry file.( '+fn+')');
-        		console.log(err);
-    		}
-    		break;
-    	case "http:":
-    	case "https:":
-    		// Sync http request
-    		res = request('GET' , decodedUrl.href);
-    		if (res.statusCode == 200){
-    			console.log(" + Registry downloaded from "+decodedUrl.href);
-    			_element_registry = JSON.parse(res.body);
-  			}else{
-  					throw new Error("Remote registry not accessible:"+decodedUrl.href)
-  			}
-			break;
-    	default:
-    		throw new Error("Registry protocol uknown:"+decodedUrl.protocol);
-    }
-    
-    
+	// Load the declared registry
+	_element_registry = __load_registry__(filename);
+	// Try to load dependencies
+	_.assign(_element_registry , __includeRegitry__( _element_registry))	
+	console.log( _element_registry );
+
+}
+
+// Implements includes and regitry-uri inclusion 
+function __includeRegitry__(reg){
+	var ret_registry = {};
+	// Is the reference base registry set?
+	if (reg["registry-uri"]){
+		tmp_reg = __load_registry__(reg["registry-uri"]);
+		if (tmp_reg){
+			_.assign( ret_registry , tmp_reg );
+		}
+
+         } 
+	// Are any includes declared in an array?
+	if (reg.includes && Array.isArray(reg.includes)){
+		reg.includes.forEach(function(element, index, array){
+			 tmp_reg = __load_registry__(element);
+                	if (tmp_reg){
+                        	_.assign( ret_registry , tmp_reg );
+                	}
+		});
+
+	 }
+
+	return  ret_registry ;
+}
+
+// Loads a specific URI and return the decoded json or {}
+function __load_registry__(reg_uri){
+	var tmp_reg = {};
+	if (!reg_uri)
+		return {};
+	decodedUrl = url.parse(reg_uri);
+        if (!decodedUrl.protocol){
+        	throw new Error("Registry url format uknown:"+fn);
+		return {};
+        }
+        switch (decodedUrl.protocol){
+                case "file:":
+                        try {
+                                tmp_reg = JSON.parse(fs.readFileSync(decodedUrl.path));
+					return tmp_reg;
+                        }
+                        catch (err) {
+                                console.log('There has been an error parsing the registry file.( '+fn+')');
+                                console.log(err);
+				return {};
+                        }
+                        break;
+                case "http:":
+                case "https:":
+                        // Sync http request
+                        res = request('GET' , decodedUrl.href);
+                        if (res.statusCode == 200){
+                                console.log(" + Registry downloaded from "+decodedUrl.href);
+                                tmp_reg = JSON.parse(res.body);
+                                }else{
+                                        throw new Error("Remote registry not accessible:"+decodedUrl.href)
+					return {};
+                                }
+                                break;
+                default:
+                        throw new Error("Registry protocol uknown:"+decodedUrl.protocol);
+        }
+	return tmp_reg;
 }
 
 Element.prototype.getName = function(){
@@ -1469,7 +1507,7 @@ Statement.prototype.whenToString = function(){
 
 //###set_when
 //>Set the statement's temporal scope. Ensures that the temporal scope is
-// We can pass a When instance or directly a valid string for a when initialization
+// We can pass a When instance or directly a valid string for a when enitialization
 Statement.prototype.set_when = function(wh){
     var w = null;
     if (wh instanceof when)

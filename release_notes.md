@@ -41,3 +41,9 @@
 #0.6.2
 
 - Can read registry over HTTP, HTTPS (or locally) using sync-request. Use file://<full path to registry file> for local registry
+
+#0.7.1
+
+- Access to a registry (file or https, http) in a dedicated function
+- Support for registry-uri/includes
+- Registry access errror management
