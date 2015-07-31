@@ -1591,14 +1591,6 @@ Statement.prototype._mpcv_hash = function(){
         " mk " + " " + smk.join("_") + " mv " + " " + smv.join("_")+
         " r " + " " + _.sortBy(this.result_column_names()).join("_");
 
-        /*var tstr = this._verb + " w " + JSON.stringify(this._when) +
-               " pk " + " " + _.reduce(spk , function(concat, param){return(concat+"_"+param)}) +
-               " pc " + " " + _.reduce(spc , function(concat, param){return(concat+"_"+param)}) + " pv " + " " +
-                _.reduce(spv , function(concat, param){return(concat+"_"+param)})
-               " mk " + " " + _.reduce(smk , function(concat, param){return(concat+"_"+param)}) + " mv " + " " +
-                _.reduce(smv , function(concat, param){return(concat+"_"+param)})
-               " r " + " " + _.reduce(_.sortBy(this.result_column_names()) , function(concat, param){return(concat+"_"+param)} );
-         */
         return sha1(tstr);
 }
 
@@ -1917,7 +1909,7 @@ Result.prototype.get_result_values = function(columnName){
 var BareNotification = function(config){
     if (!config)
         config = {};
-    this._token = config.token || null;
+    this._token = config.token || config.exception || null;
     
     return this; //Chainig
 }
@@ -1931,17 +1923,25 @@ var Exception = function(config){
     if (!config)
         config = {};
     
-    this._errmsg = config.errmsg || "Unspecified exception";
+    this._errmsg = config.errmsg || config.message || "Unspecified exception";
+    this.verb = KIND_EXCEPTION;
     
     return this; //Chainig
 }
 util.inherits(Exception, BareNotification);
+Exception.prototype.toString = function(){
+	return this._errmsg;
+}
    
 
 Exception.prototype.get_token = function(){
     return this._token;
 }
 
+// Global functoin to check if we are dealing with exception
+function __is_exception__(obj){
+	return ((obj.verb == KIND_EXCEPTION) || false);
+}
 
 //#StatementNotification
 // Common implementation superclass for notifications that 
@@ -2089,6 +2089,7 @@ utility.isReal = function(n){
 }
 
 
+
 /*
  #from_dict
    > This function creates an mPlane object from a message
@@ -2133,9 +2134,13 @@ from_dict = function(dict){
         case KIND_REDEMPTION:
             retObj = new Redemption(config);
             break;
+	case KIND_EXCEPTION:
+            retObj = new Exception(dict);
+	    console.log(retObj)
+            break;
         default:
             retObj = new Statement(config);
-            console.log(kind + "TO BE ADDED IN from_dict. USING DEFAULT STATEMENT");
+            console.log(kind + " TO BE ADDED IN from_dict. USING DEFAULT STATEMENT");
     }
     if (dict[kind])
         config.verb = dict[kind];
@@ -2182,11 +2187,14 @@ from_dict = function(dict){
     // Called here since we called the obj creation without all params set.
     // Some type of messages should keep the token we push from config. We force them for better compliance
     // Not too elegant, but simpler to do ...
-    if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT)){
+    if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT) ){
         retObj.set_token(dict.token);
     }
     else
-        retObj.update_token();
+	try{
+        	retObj.update_token();
+	}catch(e){
+	}
 
     return retObj;
 }
@@ -2240,5 +2248,6 @@ module.exports = {
     Receipt: Receipt,
     Redemption:Redemption,
     Withdrawal: Withdrawal,
-    from_dict: from_dict
+    from_dict: from_dict,
+    isException: __is_exception__
 }

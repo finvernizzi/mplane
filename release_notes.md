@@ -54,3 +54,9 @@
 
 #0.7.5
 - Debug on undefined primitives
+
+#0.7.6
+- Exception better supported
+- isException for simple check of the returned object
+- Exception.prototype.toString()
+- Some debug in from_dict
