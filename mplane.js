@@ -41,6 +41,7 @@ var _ = require("lodash"),
     fs = require("fs"),
     url = require("url"),
     sha1 = require("sha-1"),
+    merge = require('merge'),
     request = require('sync-request');
 // --------------------------
 
@@ -792,10 +793,10 @@ var Element = function(config){
 		try{
             		prim = el.prim.toUpperCase() || el._prim.toUpperCase() || Primitive.UNDEF;
 		}catch(e){
-			console.log("*************************************");
+			console.log("-- *************************************");
 			console.log(e);
 			console.log(prim);
-			console.log("*************************************");
+			console.log("-- *************************************");
 		}
             constr = config.constraints;
         }else{
@@ -833,29 +834,34 @@ _element_registry = {};
 Element.initialize_registry = function(filename){
 	// Load the declared registry
 	_element_registry = __load_registry__(filename);
-	// Try to load dependencies
-	var new_elements = __includeRegitry__( _element_registry)
+	// Try to load dependencies, if any
+	var new_elements = __includeRegitry__( _element_registry , filename)
 	 __glueRegistries__(_element_registry , new_elements )
 }
 
 // Implements includes and regitry-uri inclusion 
-function __includeRegitry__(reg){
+// Filename, if defined, should be the name of the original URL
+function __includeRegitry__(reg , fileName){
 	var ret_registry = {};
 	// Is the reference base registry set?
 	if (reg["registry-uri"]){
-		tmp_reg = __load_registry__(reg["registry-uri"]);
-		if (tmp_reg){
-			__glueRegistries__( ret_registry , tmp_reg );
+		if (fileName  && (reg["registry-uri"] != fileName)){
+			tmp_reg = __load_registry__(reg["registry-uri"] , _element_registry);
+			if (tmp_reg){
+				 __glueRegistries__( ret_registry , tmp_reg );
+			}
 		}
 
          } 
 	// Are any includes declared in an array?
 	if (reg.includes && Array.isArray(reg.includes)){
 		reg.includes.forEach(function(element, index, array){
-			 tmp_reg = __load_registry__(element);
-                	if (tmp_reg){
-                        	__glueRegistries__( ret_registry , tmp_reg );
-                	}
+			//__load_registry__(element , _element_registry);
+			//var tmp_reg = __load_registry__(element);
+			//console.log(tmp_reg)
+                	//if (tmp_reg){
+                        	 __glueRegistries__( ret_registry ,  __load_registry__(element) );
+                	//}
 		});
 
 	 }
@@ -867,22 +873,22 @@ function __includeRegitry__(reg){
 function __load_registry__(reg_uri){
 	var tmp_reg = {};
 	if (!reg_uri)
-		return {};
+		return tmp_reg;
 	decodedUrl = url.parse(reg_uri);
         if (!decodedUrl.protocol){
         	throw new Error("Registry url format uknown:"+fn);
-		return {};
+		return tmp_reg;
         }
         switch (decodedUrl.protocol){
                 case "file:":
                         try {
                                 tmp_reg = JSON.parse(fs.readFileSync(decodedUrl.path));
-					return tmp_reg;
+				return tmp_reg;
                         }
                         catch (err) {
                                 console.log('There has been an error parsing the registry file.( '+fn+')');
                                 console.log(err);
-				return {};
+				return tmp_reg;
                         }
                         break;
                 case "http:":
@@ -890,24 +896,27 @@ function __load_registry__(reg_uri){
                         // Sync http request
                         res = request('GET' , decodedUrl.href);
                         if (res.statusCode == 200){
-                                console.log(" + Registry downloaded from "+decodedUrl.href);
+				console.log(" + Registry downloaded from "+decodedUrl.href);
                                 tmp_reg = JSON.parse(res.body);
-                                }else{
-                                        throw new Error("Remote registry not accessible:"+decodedUrl.href)
-					return {};
-                                }
-                                break;
+                         }else{
+                                throw new Error("Remote registry not accessible:"+decodedUrl.href)
+				return tmp_reg;
+                         }
+                         break;
                 default:
                         throw new Error("Registry protocol uknown:"+decodedUrl.protocol);
+			return tmp_reg;
         }
 	return tmp_reg;
 }
 
 // Simply push new elements in the registry1 from regitry1
 function __glueRegistries__(reg1 , reg2){
-	if (!reg2.elements || ! reg1.elements)
-		return;
-	for (var attrname in reg2.elements) { reg1.elements.push(reg1.elements[attrname]) }
+	if (!reg1 )
+		reg1 = {};
+	if (!reg2 )
+		reg2 = {};
+	return merge(reg1 , reg2);
 }
 
 Element.prototype.getName = function(){
@@ -1640,9 +1649,9 @@ Statement.prototype._result_rows = function(resultColumn){
 //##to_dict
 //Convert a Statement to a dictionary (JSON FORMAT)
 // --- Compatible with THE mPlane RI ---
-// 19052915: SDK compliance: is a meta is not in the registry, do not add it
+// 19052915: SDK compliance: if a meta is not in the registry, do not add it
 Statement.prototype.to_dict = function(){
-    var ret = {}
+	    var ret = {}
         ,self = this;
     // We have a property named after kind of Statement and value is the verb
     ret[this.kind_str()] = this._verb;
@@ -1699,6 +1708,7 @@ Statement.prototype.to_dict = function(){
            val = Constraints.unParse_constraint(self.get_parameter_constraints(param));
         ret[KEY_PARAMETERS][param] = val;
     });
+
     return JSON.stringify(ret);
 }
 
@@ -1801,7 +1811,6 @@ var Specification = function(config){
             this._resultcolumns = config._resultcolumns || config.resultcolumns || [];
         }
     }
-    // FIXME: this should be tested!
     if (config.when || config._when)
         this._when = config.when || config._when;
     return this;// Chaining
@@ -2113,6 +2122,12 @@ from_dict = function(dict){
         },
         kind = null;
 
+        config = dict;
+	config.verb = dict.verb || dict.capability;
+	config.label = dict.label || dict._label || "";
+	config.link = dict.link || "";
+	config.when = dict.when || "";
+
     supported_kinds.forEach(function(k){
         if (_.contains(properties, k)){
             kind = k;
@@ -2136,7 +2151,6 @@ from_dict = function(dict){
             break;
 	case KIND_EXCEPTION:
             retObj = new Exception(dict);
-	    console.log(retObj)
             break;
         default:
             retObj = new Statement(config);
@@ -2187,14 +2201,14 @@ from_dict = function(dict){
     // Called here since we called the obj creation without all params set.
     // Some type of messages should keep the token we push from config. We force them for better compliance
     // Not too elegant, but simpler to do ...
-    if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT) ){
+    //if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT) || (kind == KIND_CAPABILITY) ){
         retObj.set_token(dict.token);
-    }
-    else
-	try{
-        	retObj.update_token();
-	}catch(e){
-	}
+    //}
+    //else
+//	try{
+        	//retObj.update_token();
+	//}catch(e){
+	    //}
 
     return retObj;
 }

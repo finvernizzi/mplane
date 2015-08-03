@@ -60,3 +60,7 @@
 - isException for simple check of the returned object
 - Exception.prototype.toString()
 - Some debug in from_dict
+
+#0.7.7
+- [BUG] Capability token in to_dict is correctly set
+- Better work in regitry chains using merge
