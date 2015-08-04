@@ -64,3 +64,8 @@
 #0.7.7
 - [BUG] Capability token in to_dict is correctly set
 - Better work in regitry chains using merge
+
+#0.7.8
+- [BUG] REAL prim was not provided by all the needed functionalities
+- Registry merge simplified. Merge library dependency removed
+- Added some messages for checking the registry chain has been loaded and merged

@@ -41,7 +41,6 @@ var _ = require("lodash"),
     fs = require("fs"),
     url = require("url"),
     sha1 = require("sha-1"),
-    merge = require('merge'),
     request = require('sync-request');
 // --------------------------
 
@@ -605,7 +604,23 @@ var PRIMITIVES = {
         label: "real",
         isValid: function(value){return utility.isReal(value); },
         unParse: function(value){return value.toString();   },
-        parse: function(value){return parseFloat(value); }
+        parse: function(value){return parseFloat(value); },constraints : {
+            "range" : {
+                met_by : function(value){
+                    return ((parseInt(value) >= parseInt(this._param.valA)) && (parseInt(value) <= parseInt(this._param.valB)));
+                }
+            },
+            "list" : {
+                met_by : function(value){
+                    return (_.contains(this._param, value));
+                }
+            },
+            "singleton" : {
+                met_by : function(value){
+                    return (value === this._param);
+                }
+            }
+        }
     },
     "IP":{
         label: "ip",
@@ -778,7 +793,6 @@ var Element = function(config){
             details : {}, type: Constraints.UNDEF};
         this.addConstraint(contrs);
 
-    //this._registryOID = config._registryOID || config.registryOID || null;
     }else{ // the config is a string or has the type field
         var name = "Undef";
         var oid = "Undef";
@@ -795,7 +809,9 @@ var Element = function(config){
 		}catch(e){
 			console.log("-- *************************************");
 			console.log(e);
+			console.log(config);
 			console.log(prim);
+			console.log(el)
 			console.log("-- *************************************");
 		}
             constr = config.constraints;
@@ -836,19 +852,26 @@ Element.initialize_registry = function(filename){
 	_element_registry = __load_registry__(filename);
 	// Try to load dependencies, if any
 	var new_elements = __includeRegitry__( _element_registry , filename)
-	 __glueRegistries__(_element_registry , new_elements )
+	console.log("\n +++++++++++++++++++++++++++++++++");
+	console.log(" + Elements in my registry %s",_element_registry.elements.length)
+	console.log(" +++++++++++++++++++++++++++++++++");
+}
+
+Element.get_registry = function(){
+	return _element_registry;
 }
 
 // Implements includes and regitry-uri inclusion 
 // Filename, if defined, should be the name of the original URL
 function __includeRegitry__(reg , fileName){
-	var ret_registry = {};
+	if (!reg)
+		reg = {"registry-uri" : ""};
 	// Is the reference base registry set?
 	if (reg["registry-uri"]){
 		if (fileName  && (reg["registry-uri"] != fileName)){
 			tmp_reg = __load_registry__(reg["registry-uri"] , _element_registry);
 			if (tmp_reg){
-				 __glueRegistries__( ret_registry , tmp_reg );
+				 __glueRegistries__( reg , tmp_reg );
 			}
 		}
 
@@ -856,17 +879,12 @@ function __includeRegitry__(reg , fileName){
 	// Are any includes declared in an array?
 	if (reg.includes && Array.isArray(reg.includes)){
 		reg.includes.forEach(function(element, index, array){
-			//__load_registry__(element , _element_registry);
-			//var tmp_reg = __load_registry__(element);
-			//console.log(tmp_reg)
-                	//if (tmp_reg){
-                        	 __glueRegistries__( ret_registry ,  __load_registry__(element) );
-                	//}
+                        __glueRegistries__( reg ,  __load_registry__(element) );
 		});
 
 	 }
 
-	return  ret_registry ;
+	return  reg ;
 }
 
 // Loads a specific URI and return the decoded json or {}
@@ -896,8 +914,8 @@ function __load_registry__(reg_uri){
                         // Sync http request
                         res = request('GET' , decodedUrl.href);
                         if (res.statusCode == 200){
-				console.log(" + Registry downloaded from "+decodedUrl.href);
                                 tmp_reg = JSON.parse(res.body);
+				console.log(" + Registry downloaded from %s (%s)",decodedUrl.href,tmp_reg.elements.length);
                          }else{
                                 throw new Error("Remote registry not accessible:"+decodedUrl.href)
 				return tmp_reg;
@@ -910,13 +928,18 @@ function __load_registry__(reg_uri){
 	return tmp_reg;
 }
 
-// Simply push new elements in the registry1 from regitry1
+// Simply push new elements in the registry1 from regitry2
+// ONLY ELEMENTS are added!
+// reg1.elements are overloaded with re1.elements when are the same
 function __glueRegistries__(reg1 , reg2){
 	if (!reg1 )
-		reg1 = {};
+		reg1 = {elements:[]};
 	if (!reg2 )
-		reg2 = {};
-	return merge(reg1 , reg2);
+		reg2 = {elements:[]};
+	for (var i=0; i < reg2.elements.length ; i++){
+		reg1.elements.push(reg2.elements[i]);
+	}
+	return reg1;
 }
 
 Element.prototype.getName = function(){
@@ -936,9 +959,10 @@ Element.getFromName = function(name){
 		pos = _.findIndex(_element_registry.elements, { 'name': name});
 		if (pos != -1)
 			return _element_registry.elements[pos] ;
-		else 
+		else {
 			return false;
 			//throw new Error("mPlane Element : Undefined element in registry:"+name);
+		}
 	}else{
 		// TI format
 		var names = name.split(".");
@@ -2201,9 +2225,13 @@ from_dict = function(dict){
     // Called here since we called the obj creation without all params set.
     // Some type of messages should keep the token we push from config. We force them for better compliance
     // Not too elegant, but simpler to do ...
-    //if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT) || (kind == KIND_CAPABILITY) ){
-        retObj.set_token(dict.token);
-    //}
+    if ((kind == KIND_REDEMPTION) || (kind == KIND_RESULT) || (kind == KIND_SPECIFICATION) || (kind == KIND_RECEIPT) || (kind == KIND_CAPABILITY) ){
+	try{
+        	retObj.set_token(dict.token);
+	}catch(e){
+		console.log("---- ERROR in from_dict. KIND:%s - dict %s ", kind , dict.toString());
+	}
+    }
     //else
 //	try{
         	//retObj.update_token();
