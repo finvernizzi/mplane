@@ -108,7 +108,6 @@ The base mPlane library implements the mPlane Information Model elements that ca
 A nodejs HTTPS API has been implemented for basic usage (create and read elements) and can be find [here](https://github.com/finvernizzi/mplane_http_transport.git).
 
 #EXAMPLES
-Some working implementations are publicly available. 
 
 ## Supervisor
 A complete supervisor implementation written in javascript is available [here](https://github.com/finvernizzi/supervisor).
