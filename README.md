@@ -13,7 +13,7 @@ The architecture and software structure is freely inspired by [mPlane reference 
 `npm install mplane`
 
 #Usage example
-In this example we set two capabilities for a probe. First of all import the main mPlane library
+In this example we set a capability for a probe. 
 
 ```javascript
 var mplane = require('mplane');
@@ -42,7 +42,6 @@ probeCapability.add_parameter({
 probeCapability.add_result_column("delay.twoway");
 
 // Some metadata
-
 probeCapability.set_metadata_value("System_type","Just a TEST")
     .set_metadata_value("System_version","0.1a")
     .set_metadata_value("System_ID","Pinger").update_token();
