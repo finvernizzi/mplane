@@ -2,8 +2,9 @@ language: node_js
 node_js: 
 - "0.8"
 - "0.10"
-- "0.11"
+- "0.12"
 deploy:
   provider: npm
   email: "fabrizio.invernizzi@telecomitalia.it"
+  sudo: false
   api_key: "ZmludmVybml6emk6bGFzYXNuNm4="

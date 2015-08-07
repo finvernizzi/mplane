@@ -13,67 +13,43 @@ The architecture and software structure is freely inspired by [mPlane reference 
 `npm install mplane`
 
 #Usage example
-In this example we set a simple capability for a pinger probe. First of all import the main mPlane library
+In this example we set two capabilities for a probe. First of all import the main mPlane library
 
 ```javascript
 var mplane = require('mplane');
 
-// The IP address of the pinger
-var __MY_IP__ = "192.168.0.123";
+var MY_IP="192.168.0.1";
 
-// Initialize available primitives from the registry
-// It can be a local file or a remote __URL__
-mplane.Element.initialize_registry("https://raw.githubusercontent.com/fp7mplane/protocol-ri/master/mplane/registry.json");
+// Initialize available primitives from a registry
+// Can be any valid URL or local file
+mplane.Element.initialize_registry("ict-mplane.eu/registry/demo");
 
-// Create a new mPlane Capability
-var pingerCapability = new mplane.Capability();
+// Create a new Capability object
+var probeCapability = new mplane.Capability();
+// Set time constraints
+probeCapability.set_when("now ... future / 1s");
 
-// Set the accepted time and periodicity
-pingerCapability.set_when("now ... future / 1s");
-
-// Add parameters with associated constraints
-pingerCapability.add_parameter({
+// Add parameters with constraints
+probeCapability.add_parameter({
     type:"destination.ip4",
-    constraints:"192.168.0.1 ... 192.168.0.254"
-});
-pingerCapability.add_parameter({
-    type:"number",
-    constraints:"1 ... 10"
-});
-pingerCapability.add_parameter({
+    constraints: "192.168.0.0/16"
+}).add_parameter({
         type:"source.ip4",
-        constraints:__MY_IP__
+        constraints:MY_IP
 });
 
-// Add result columns
-pingerCapability.add_result_column("delay.twoway")
-    .set_metadata_value("System_type","Pinger")
+// Results
+probeCapability.add_result_column("delay.twoway");
+
+// Some metadata
+
+probeCapability.set_metadata_value("System_type","Just a TEST")
     .set_metadata_value("System_version","0.1a")
-    .set_metadata_value("System_ID","Lab test machine").update_token();
-    
-// Define a label
-pingerCapability.set_label("DEMO pinger");
-```
+    .set_metadata_value("System_ID","Pinger").update_token();
+// A label to identify the capability
+probeCapability.set_label("This_is_a_pinger");
 
-Please refer to the Examples directory for a working mPlane probe.
-For a complete set of mPlane components (probe, supervisor and client) build by means of this repository, please refer to [mPlane components](https://github.com/finvernizzi/mplane_components).
 
-#Chainability
-Each mPlane function supports chainability
-For example you can define all the parameters in a single chain:
- 
-```javascript
-// Add parameters with associated constraints
-pingerCapability.add_parameter({
-    type:"destination.ip4",
-    constraints:"192.168.0.1 ... 192.168.0.254"
-}).add_parameter({
-    type:"number",
-    constraints:"1 ... 10"
-}).add_parameter({
-        type:"source.ip4",
-        constraints:__MY_IP__
-});
 ```
 
 #Interaction with the RI
@@ -95,33 +71,34 @@ The following example, shows how the pinger capability defined in the above prob
 
 ```javascript
 /* serialize the capability in an mPlane RI message*/
-var RICapabilitySstatement = pingerCapability.to_dict();
+var RIprobeCapability = probeCapability.to_dict();
 
 /* Shows the serialized capability*/
-console.log(RICapabilitySstatement);
+console.log(RIprobeCapability);
 ```
 
 This is the output of the above example
 
 ```json
 {
-	"capability":"measure",
-	"label":"pinger_TI_test",
-	"metadata":{
-		"System_type":"Pinger",
-		"System_version":"0.1a",
-		"System_ID":"Lab test machine"
-	},
-	"link":"",
-	"token":"c61ad8db5f9a4cc38e7ae8d8b5deae85ea93187b",
-	"when":"now ... future / 1s",
-	"resultvalues":[],
-	"results":["delay.twoway"],
-	"parameters":{
-		"destination.ip4":"192.168.0.1 ... 192.168.255.255",
-		"number":"1 ... 10",
-		"source.ip4":"192.168.0.1"
-	}
+    "capability": "measure",
+    "label": "This_is_a_pinger",
+    "metadata": {
+        "System_type": "Just a TEST",
+        "System_version": "0.1a",
+        "System_ID": "Pinger"
+    },
+    "link": "",
+    "token": "ead75d3d198ce8f45ae371246da15fd89d05de24",
+    "when": "now ... future / 1s",
+    "resultvalues": [],
+    "results": [
+        "delay.twoway"
+    ],
+    "parameters": {
+        "destination.ip4": "192.168.0.0/16",
+        "source.ip4": "192.168.0.1"
+    }
 }
 ```
 
@@ -132,12 +109,24 @@ The base mPlane library implements the mPlane Information Model elements that ca
 A nodejs HTTPS API has been implemented for basic usage (create and read elements) and can be find [here](https://github.com/finvernizzi/mplane_http_transport.git).
 
 #EXAMPLES
-A complete set of basic mPlane components is ready to use [here](https://github.com/finvernizzi/mplane_components). 
+Some working implementations are publicly available. 
+
+## Supervisor
+A complete supervisor implementation written in javascript is available [here](https://github.com/finvernizzi/supervisor).
+
+
+## Reasoner
+A reasoner written for DEMO purpouses is available [here](https://github.com/finvernizzi/reasoner)
+
+## Probe
+A probe implementing ping, traceroute and HTTP download delay is available [here](https://github.com/finvernizzi/mplane_probe)
 
 #Documentation
-
 Please refer to the API reference [mPlane nodejs API](http://finvernizzi.github.io/mplane/)
 
 #Release Notes
 
-You can find release notes [here](https://github.com/finvernizzi/mplane/blob/workInProgress/release_notes.md)
+You can find release notes [here](https://github.com/finvernizzi/mplane/blob/master/release_notes.md)
+
+#LICENSE
+This software is released under the [BSD](https://en.wikipedia.org/wiki/BSD_licenses#2-clause_license_.28.22Simplified_BSD_License.22_or_.22FreeBSD_License.22.29) license.
