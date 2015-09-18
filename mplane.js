@@ -843,6 +843,7 @@ var Element = function(config){
 
 // Array containing the known elements
 _element_registry = {};
+var _registry_URL = null;
 
 
 // Initialize the registry from a json file
@@ -850,6 +851,7 @@ _element_registry = {};
 Element.initialize_registry = function(filename){
 	// Load the declared registry
 	_element_registry = __load_registry__(filename);
+	_registry_URL = filename;
 	// Try to load dependencies, if any
 	var new_elements = __includeRegitry__( _element_registry , filename)
 	console.log("\n +++++++++++++++++++++++++++++++++");
@@ -975,9 +977,6 @@ Element.getFromName = function(name){
     	}
     	return ret;
 	}
-	
-
-    
 };
 
 //## parse
@@ -1675,8 +1674,8 @@ Statement.prototype._result_rows = function(resultColumn){
 // --- Compatible with THE mPlane RI ---
 // 19052915: SDK compliance: if a meta is not in the registry, do not add it
 Statement.prototype.to_dict = function(){
-	    var ret = {}
-        ,self = this;
+    var ret = {}
+       ,self = this;
     // We have a property named after kind of Statement and value is the verb
     ret[this.kind_str()] = this._verb;
 
@@ -1732,7 +1731,9 @@ Statement.prototype.to_dict = function(){
            val = Constraints.unParse_constraint(self.get_parameter_constraints(param));
         ret[KEY_PARAMETERS][param] = val;
     });
-
+    // SDK compliance 18092015
+    ret.registry=_registry_URL;
+	
     return JSON.stringify(ret);
 }
 
