@@ -1,6 +1,6 @@
 {
   "name": "mplane",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "mPlane nodeJS implementation",
   "main": "mplane.js",
   "directories": {
